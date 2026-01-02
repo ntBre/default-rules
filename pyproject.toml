@@ -8,3 +8,14 @@ dependencies = [
     "notebook>=7.5.1",
     "polars>=1.36.1",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.10",
+    "ty>=0.0.8",
+]
+
+[tool.ruff]
+preview = true
+
+lint.extend-select = ["SIM905"]
