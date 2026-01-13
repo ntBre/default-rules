@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposed Default Ruff Rules</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #fff;
+        }
+
+        .nav {
+            padding: 10px 20px;
+            border-bottom: 1px solid #e1e4e8;
+            background-color: #f6f8fa;
+        }
+
+        .nav a {
+            color: #0366d6;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            overflow-y: auto;
+            height: calc(100vh - 41px);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f6f8fa;
+        }
+
+        th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #24292e;
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #e1e4e8;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover {
+            background-color: #e1e4e8;
+        }
+
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.3;
+        }
+
+        th.sorted-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+
+        th.sorted-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tbody tr:hover {
+            background-color: #f6f8fa;
+        }
+
+        td a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 12px;
+        }
+
+        .rule-code {
+            font-weight: 600;
+            color: #0366d6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="on_by_default.html">Default Rules</a>
+        <a href="off_by_default.html">Off-by-Default Rules</a>
+    </nav>
+
+    <div class="table-wrapper">
+        <table id="rulesTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-column="rule">Rule</th>
+                    <th class="sortable" data-column="name">Name</th>
+                    <th class="sortable" data-column="accuracy">Accuracy</th>
+                    <th class="sortable" data-column="severity">Severity</th>
+                    <th class="sortable" data-column="fixability">Fixability</th>
+                    <th class="sortable" data-column="applicability">Applicability</th>
+                    <th class="sortable" data-column="configuration">Configuration</th>
+                    <th class="sortable" data-column="conflicts">Conflicts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A001" target="_blank" class="code rule-code">A001</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A001" target="_blank">builtin-variable-shadowing</a></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A002" target="_blank" class="code rule-code">A002</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A002" target="_blank">builtin-argument-shadowing</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A003" target="_blank" class="code rule-code">A003</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A003" target="_blank">builtin-attribute-shadowing</a></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A004" target="_blank" class="code rule-code">A004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A004" target="_blank">builtin-import-shadowing</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A005" target="_blank" class="code rule-code">A005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A005" target="_blank">stdlib-module-shadowing</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A006" target="_blank" class="code rule-code">A006</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/A006" target="_blank">builtin-lambda-argument-shadowing</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG001" target="_blank" class="code rule-code">ARG001</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG001" target="_blank">unused-function-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG002" target="_blank" class="code rule-code">ARG002</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG002" target="_blank">unused-method-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG003" target="_blank" class="code rule-code">ARG003</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG003" target="_blank">unused-class-method-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG004" target="_blank" class="code rule-code">ARG004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG004" target="_blank">unused-static-method-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG005" target="_blank" class="code rule-code">ARG005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/ARG005" target="_blank">unused-lambda-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B002" target="_blank" class="code rule-code">B002</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B002" target="_blank">unary-prefix-increment-decrement</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B003" target="_blank" class="code rule-code">B003</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B003" target="_blank">assignment-to-os-environ</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B004" target="_blank" class="code rule-code">B004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B004" target="_blank">unreliable-callable-check</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B005" target="_blank" class="code rule-code">B005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B005" target="_blank">strip-with-multi-characters</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B012" target="_blank" class="code rule-code">B012</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B012" target="_blank">jump-statement-in-finally</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B015" target="_blank" class="code rule-code">B015</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B015" target="_blank">useless-comparison</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B016" target="_blank" class="code rule-code">B016</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B016" target="_blank">raise-literal</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B017" target="_blank" class="code rule-code">B017</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B017" target="_blank">assert-raises-exception</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B019" target="_blank" class="code rule-code">B019</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B019" target="_blank">cached-instance-method</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B020" target="_blank" class="code rule-code">B020</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B020" target="_blank">loop-variable-overrides-iterator</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B021" target="_blank" class="code rule-code">B021</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B021" target="_blank">f-string-docstring</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B022" target="_blank" class="code rule-code">B022</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B022" target="_blank">useless-contextlib-suppress</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B025" target="_blank" class="code rule-code">B025</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B025" target="_blank">duplicate-try-block-exception</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B029" target="_blank" class="code rule-code">B029</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B029" target="_blank">except-with-empty-tuple</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B030" target="_blank" class="code rule-code">B030</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B030" target="_blank">except-with-non-exception-classes</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B031" target="_blank" class="code rule-code">B031</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B031" target="_blank">reuse-of-groupby-generator</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B032" target="_blank" class="code rule-code">B032</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B032" target="_blank">unintentional-type-annotation</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B035" target="_blank" class="code rule-code">B035</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B035" target="_blank">static-key-dict-comprehension</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/D419" target="_blank" class="code rule-code">D419</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/D419" target="_blank">empty-docstring</a></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E401" target="_blank" class="code rule-code">E401</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E401" target="_blank">multiple-imports-on-one-line</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E402" target="_blank" class="code rule-code">E402</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E402" target="_blank">module-import-not-at-top-of-file</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E701" target="_blank" class="code rule-code">E701</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E701" target="_blank">multiple-statements-on-one-line-colon</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E702" target="_blank" class="code rule-code">E702</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E702" target="_blank">multiple-statements-on-one-line-semicolon</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E703" target="_blank" class="code rule-code">E703</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E703" target="_blank">useless-semicolon</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E711" target="_blank" class="code rule-code">E711</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E711" target="_blank">none-comparison</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E712" target="_blank" class="code rule-code">E712</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E712" target="_blank">true-false-comparison</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E713" target="_blank" class="code rule-code">E713</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E713" target="_blank">not-in-test</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E714" target="_blank" class="code rule-code">E714</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E714" target="_blank">not-is-test</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E721" target="_blank" class="code rule-code">E721</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E721" target="_blank">type-comparison</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E722" target="_blank" class="code rule-code">E722</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E722" target="_blank">bare-except</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E731" target="_blank" class="code rule-code">E731</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E731" target="_blank">lambda-assignment</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E741" target="_blank" class="code rule-code">E741</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E741" target="_blank">ambiguous-variable-name</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E742" target="_blank" class="code rule-code">E742</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E742" target="_blank">ambiguous-class-name</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E743" target="_blank" class="code rule-code">E743</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E743" target="_blank">ambiguous-function-name</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E902" target="_blank" class="code rule-code">E902</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/E902" target="_blank">io-error</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F401" target="_blank" class="code rule-code">F401</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F401" target="_blank">unused-import</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F402" target="_blank" class="code rule-code">F402</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F402" target="_blank">import-shadowed-by-loop-var</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F403" target="_blank" class="code rule-code">F403</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F403" target="_blank">undefined-local-with-import-star</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F404" target="_blank" class="code rule-code">F404</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F404" target="_blank">late-future-import</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F405" target="_blank" class="code rule-code">F405</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F405" target="_blank">undefined-local-with-import-star-usage</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F406" target="_blank" class="code rule-code">F406</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F406" target="_blank">undefined-local-with-nested-import-star-usage</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F407" target="_blank" class="code rule-code">F407</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F407" target="_blank">future-feature-not-defined</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F501" target="_blank" class="code rule-code">F501</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F501" target="_blank">percent-format-invalid-format</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F502" target="_blank" class="code rule-code">F502</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F502" target="_blank">percent-format-expected-mapping</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F503" target="_blank" class="code rule-code">F503</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F503" target="_blank">percent-format-expected-sequence</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F504" target="_blank" class="code rule-code">F504</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F504" target="_blank">percent-format-extra-named-arguments</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F505" target="_blank" class="code rule-code">F505</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F505" target="_blank">percent-format-missing-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F506" target="_blank" class="code rule-code">F506</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F506" target="_blank">percent-format-mixed-positional-and-named</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F507" target="_blank" class="code rule-code">F507</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F507" target="_blank">percent-format-positional-count-mismatch</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F508" target="_blank" class="code rule-code">F508</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F508" target="_blank">percent-format-star-requires-sequence</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F509" target="_blank" class="code rule-code">F509</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F509" target="_blank">percent-format-unsupported-format-character</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F521" target="_blank" class="code rule-code">F521</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F521" target="_blank">string-dot-format-invalid-format</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F522" target="_blank" class="code rule-code">F522</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F522" target="_blank">string-dot-format-extra-named-arguments</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F523" target="_blank" class="code rule-code">F523</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F523" target="_blank">string-dot-format-extra-positional-arguments</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F524" target="_blank" class="code rule-code">F524</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F524" target="_blank">string-dot-format-missing-arguments</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F525" target="_blank" class="code rule-code">F525</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F525" target="_blank">string-dot-format-mixing-automatic</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F541" target="_blank" class="code rule-code">F541</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F541" target="_blank">f-string-missing-placeholders</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F601" target="_blank" class="code rule-code">F601</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F601" target="_blank">multi-value-repeated-key-literal</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F602" target="_blank" class="code rule-code">F602</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F602" target="_blank">multi-value-repeated-key-variable</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F621" target="_blank" class="code rule-code">F621</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F621" target="_blank">expressions-in-star-assignment</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F622" target="_blank" class="code rule-code">F622</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F622" target="_blank">multiple-starred-expressions</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F631" target="_blank" class="code rule-code">F631</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F631" target="_blank">assert-tuple</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F632" target="_blank" class="code rule-code">F632</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F632" target="_blank">is-literal</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F633" target="_blank" class="code rule-code">F633</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F633" target="_blank">invalid-print-syntax</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F634" target="_blank" class="code rule-code">F634</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F634" target="_blank">if-tuple</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F701" target="_blank" class="code rule-code">F701</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F701" target="_blank">break-outside-loop</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F702" target="_blank" class="code rule-code">F702</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F702" target="_blank">continue-outside-loop</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F704" target="_blank" class="code rule-code">F704</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F704" target="_blank">yield-outside-function</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F706" target="_blank" class="code rule-code">F706</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F706" target="_blank">return-outside-function</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F707" target="_blank" class="code rule-code">F707</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F707" target="_blank">default-except-not-last</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F722" target="_blank" class="code rule-code">F722</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F722" target="_blank">forward-annotation-syntax-error</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F811" target="_blank" class="code rule-code">F811</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F811" target="_blank">redefined-while-unused</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F821" target="_blank" class="code rule-code">F821</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F821" target="_blank">undefined-name</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F822" target="_blank" class="code rule-code">F822</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F822" target="_blank">undefined-export</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F823" target="_blank" class="code rule-code">F823</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F823" target="_blank">undefined-local</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F841" target="_blank" class="code rule-code">F841</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F841" target="_blank">unused-variable</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F842" target="_blank" class="code rule-code">F842</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F842" target="_blank">unused-annotation</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F901" target="_blank" class="code rule-code">F901</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/F901" target="_blank">raise-not-implemented</a></td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB163" target="_blank" class="code rule-code">FURB163</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB163" target="_blank">redundant-log-base</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG001" target="_blank" class="code rule-code">LOG001</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG001" target="_blank">direct-logger-instantiation</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE794" target="_blank" class="code rule-code">PIE794</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE794" target="_blank">duplicate-class-field-definition</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE796" target="_blank" class="code rule-code">PIE796</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE796" target="_blank">non-unique-enums</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0131" target="_blank" class="code rule-code">PLC0131</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0131" target="_blank">type-bivariance</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0132" target="_blank" class="code rule-code">PLC0132</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0132" target="_blank">type-param-name-mismatch</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0205" target="_blank" class="code rule-code">PLC0205</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0205" target="_blank">single-string-slots</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0100" target="_blank" class="code rule-code">PLE0100</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0100" target="_blank">yield-in-init</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0101" target="_blank" class="code rule-code">PLE0101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0101" target="_blank">return-in-init</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0115" target="_blank" class="code rule-code">PLE0115</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0115" target="_blank">nonlocal-and-global</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0116" target="_blank" class="code rule-code">PLE0116</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0116" target="_blank">continue-in-finally</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0117" target="_blank" class="code rule-code">PLE0117</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0117" target="_blank">nonlocal-without-binding</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0118" target="_blank" class="code rule-code">PLE0118</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0118" target="_blank">load-before-global-declaration</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0237" target="_blank" class="code rule-code">PLE0237</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0237" target="_blank">non-slot-assignment</a></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0241" target="_blank" class="code rule-code">PLE0241</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0241" target="_blank">duplicate-bases</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0302" target="_blank" class="code rule-code">PLE0302</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0302" target="_blank">unexpected-special-method-signature</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0303" target="_blank" class="code rule-code">PLE0303</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0303" target="_blank">invalid-length-return-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0305" target="_blank" class="code rule-code">PLE0305</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0305" target="_blank">invalid-index-return-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0307" target="_blank" class="code rule-code">PLE0307</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0307" target="_blank">invalid-str-return-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0308" target="_blank" class="code rule-code">PLE0308</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0308" target="_blank">invalid-bytes-return-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0309" target="_blank" class="code rule-code">PLE0309</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0309" target="_blank">invalid-hash-return-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0604" target="_blank" class="code rule-code">PLE0604</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0604" target="_blank">invalid-all-object</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0605" target="_blank" class="code rule-code">PLE0605</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0605" target="_blank">invalid-all-format</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0643" target="_blank" class="code rule-code">PLE0643</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0643" target="_blank">potential-index-error</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0704" target="_blank" class="code rule-code">PLE0704</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE0704" target="_blank">misplaced-bare-raise</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1132" target="_blank" class="code rule-code">PLE1132</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1132" target="_blank">repeated-keyword-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1142" target="_blank" class="code rule-code">PLE1142</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1142" target="_blank">await-outside-async</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1205" target="_blank" class="code rule-code">PLE1205</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1205" target="_blank">logging-too-many-args</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1206" target="_blank" class="code rule-code">PLE1206</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1206" target="_blank">logging-too-few-args</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1300" target="_blank" class="code rule-code">PLE1300</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1300" target="_blank">bad-string-format-character</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1307" target="_blank" class="code rule-code">PLE1307</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1307" target="_blank">bad-string-format-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1310" target="_blank" class="code rule-code">PLE1310</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1310" target="_blank">bad-str-strip-call</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1507" target="_blank" class="code rule-code">PLE1507</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1507" target="_blank">invalid-envvar-value</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1700" target="_blank" class="code rule-code">PLE1700</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1700" target="_blank">yield-from-in-async-function</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2502" target="_blank" class="code rule-code">PLE2502</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2502" target="_blank">bidirectional-unicode</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2510" target="_blank" class="code rule-code">PLE2510</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2510" target="_blank">invalid-character-backspace</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2512" target="_blank" class="code rule-code">PLE2512</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2512" target="_blank">invalid-character-sub</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2513" target="_blank" class="code rule-code">PLE2513</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2513" target="_blank">invalid-character-esc</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2514" target="_blank" class="code rule-code">PLE2514</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2514" target="_blank">invalid-character-nul</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2515" target="_blank" class="code rule-code">PLE2515</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE2515" target="_blank">invalid-character-zero-width-space</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0124" target="_blank" class="code rule-code">PLR0124</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0124" target="_blank">comparison-with-itself</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0133" target="_blank" class="code rule-code">PLR0133</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0133" target="_blank">comparison-of-constant</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0206" target="_blank" class="code rule-code">PLR0206</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR0206" target="_blank">property-with-parameters</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1704" target="_blank" class="code rule-code">PLR1704</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1704" target="_blank">redefined-argument-from-local</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1722" target="_blank" class="code rule-code">PLR1722</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1722" target="_blank">sys-exit-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0120" target="_blank" class="code rule-code">PLW0120</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0120" target="_blank">useless-else-on-loop</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0127" target="_blank" class="code rule-code">PLW0127</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0127" target="_blank">self-assigning-variable</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0128" target="_blank" class="code rule-code">PLW0128</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0128" target="_blank">redeclared-assigned-name</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0129" target="_blank" class="code rule-code">PLW0129</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0129" target="_blank">assert-on-string-literal</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0131" target="_blank" class="code rule-code">PLW0131</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0131" target="_blank">named-expr-without-context</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0133" target="_blank" class="code rule-code">PLW0133</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0133" target="_blank">useless-exception-statement</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0177" target="_blank" class="code rule-code">PLW0177</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0177" target="_blank">nan-comparison</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0245" target="_blank" class="code rule-code">PLW0245</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0245" target="_blank">super-without-brackets</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0406" target="_blank" class="code rule-code">PLW0406</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0406" target="_blank">import-self</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0602" target="_blank" class="code rule-code">PLW0602</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0602" target="_blank">global-variable-not-assigned</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0604" target="_blank" class="code rule-code">PLW0604</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0604" target="_blank">global-at-module-level</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0711" target="_blank" class="code rule-code">PLW0711</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW0711" target="_blank">binary-op-exception</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1501" target="_blank" class="code rule-code">PLW1501</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1501" target="_blank">bad-open-mode</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1507" target="_blank" class="code rule-code">PLW1507</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1507" target="_blank">shallow-copy-environ</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1508" target="_blank" class="code rule-code">PLW1508</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1508" target="_blank">invalid-envvar-default</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1509" target="_blank" class="code rule-code">PLW1509</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1509" target="_blank">subprocess-popen-preexec-fn</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1510" target="_blank" class="code rule-code">PLW1510</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW1510" target="_blank">subprocess-run-without-check</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW2101" target="_blank" class="code rule-code">PLW2101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW2101" target="_blank">useless-with-lock</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW2901" target="_blank" class="code rule-code">PLW2901</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW2901" target="_blank">redefined-loop-name</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH210" target="_blank" class="code rule-code">PTH210</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH210" target="_blank">invalid-pathlib-with-suffix</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI006" target="_blank" class="code rule-code">PYI006</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI006" target="_blank">bad-version-info-comparison</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI016" target="_blank" class="code rule-code">PYI016</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI016" target="_blank">duplicate-union-member</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI018" target="_blank" class="code rule-code">PYI018</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI018" target="_blank">unused-private-type-var</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI046" target="_blank" class="code rule-code">PYI046</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI046" target="_blank">unused-private-protocol</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI047" target="_blank" class="code rule-code">PYI047</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI047" target="_blank">unused-private-type-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI049" target="_blank" class="code rule-code">PYI049</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI049" target="_blank">unused-private-typed-dict</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI057" target="_blank" class="code rule-code">PYI057</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI057" target="_blank">byte-string-usage</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI059" target="_blank" class="code rule-code">PYI059</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI059" target="_blank">generic-not-last-base-class</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI062" target="_blank" class="code rule-code">PYI062</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI062" target="_blank">duplicate-literal-member</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF016" target="_blank" class="code rule-code">RUF016</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF016" target="_blank">invalid-index-type</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF018" target="_blank" class="code rule-code">RUF018</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF018" target="_blank">assignment-in-assert</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF026" target="_blank" class="code rule-code">RUF026</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF026" target="_blank">default-factory-kwarg</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF028" target="_blank" class="code rule-code">RUF028</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF028" target="_blank">invalid-formatter-suppression-comment</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF030" target="_blank" class="code rule-code">RUF030</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF030" target="_blank">assert-with-print-message</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF033" target="_blank" class="code rule-code">RUF033</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF033" target="_blank">post-init-default</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF034" target="_blank" class="code rule-code">RUF034</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF034" target="_blank">useless-if-else</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF040" target="_blank" class="code rule-code">RUF040</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF040" target="_blank">invalid-assert-message-literal-argument</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF048" target="_blank" class="code rule-code">RUF048</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF048" target="_blank">map-int-version-parsing</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF049" target="_blank" class="code rule-code">RUF049</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF049" target="_blank">dataclass-enum</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF053" target="_blank" class="code rule-code">RUF053</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF053" target="_blank">class-with-mixed-type-vars</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF059" target="_blank" class="code rule-code">RUF059</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF059" target="_blank">unused-unpacked-variable</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF100" target="_blank" class="code rule-code">RUF100</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF100" target="_blank">unused-noqa</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF101" target="_blank" class="code rule-code">RUF101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF101" target="_blank">redirected-noqa</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF200" target="_blank" class="code rule-code">RUF200</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF200" target="_blank">invalid-pyproject-toml</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM107" target="_blank" class="code rule-code">SIM107</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM107" target="_blank">return-in-try-except-finally</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/T100" target="_blank" class="code rule-code">T100</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/T100" target="_blank">debugger</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC004" target="_blank" class="code rule-code">TC004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC004" target="_blank">runtime-import-in-type-checking-block</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC007" target="_blank" class="code rule-code">TC007</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC007" target="_blank">unquoted-type-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC010" target="_blank" class="code rule-code">TC010</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC010" target="_blank">runtime-string-union</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TRY300" target="_blank" class="code rule-code">TRY300</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TRY300" target="_blank">try-consider-else</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP005" target="_blank" class="code rule-code">UP005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP005" target="_blank">deprecated-unittest-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP019" target="_blank" class="code rule-code">UP019</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP019" target="_blank">typing-text-str-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP021" target="_blank" class="code rule-code">UP021</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP021" target="_blank">replace-universal-newlines</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP023" target="_blank" class="code rule-code">UP023</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP023" target="_blank">deprecated-c-element-tree</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP024" target="_blank" class="code rule-code">UP024</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP024" target="_blank">os-error-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP035" target="_blank" class="code rule-code">UP035</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP035" target="_blank">deprecated-import</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP036" target="_blank" class="code rule-code">UP036</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP036" target="_blank">outdated-version-block</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP041" target="_blank" class="code rule-code">UP041</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP041" target="_blank">timeout-error-alias</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/W605" target="_blank" class="code rule-code">W605</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/W605" target="_blank">invalid-escape-sequence</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT101" target="_blank" class="code rule-code">YTT101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT101" target="_blank">sys-version-slice3</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT102" target="_blank" class="code rule-code">YTT102</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT102" target="_blank">sys-version2</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT103" target="_blank" class="code rule-code">YTT103</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT103" target="_blank">sys-version-cmp-str3</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT201" target="_blank" class="code rule-code">YTT201</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT201" target="_blank">sys-version-info0-eq3</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT203" target="_blank" class="code rule-code">YTT203</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT203" target="_blank">sys-version-info1-cmp-int</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT204" target="_blank" class="code rule-code">YTT204</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT204" target="_blank">sys-version-info-minor-cmp-int</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT301" target="_blank" class="code rule-code">YTT301</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT301" target="_blank">sys-version0</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT302" target="_blank" class="code rule-code">YTT302</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT302" target="_blank">sys-version-cmp-str10</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT303" target="_blank" class="code rule-code">YTT303</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/YTT303" target="_blank">sys-version-slice1</a></td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Sorting functionality
+        const table = document.getElementById('rulesTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const headers = table.querySelectorAll('th.sortable');
+        let sortState = {};
+
+        headers.forEach((header, index) => {
+            header.addEventListener('click', function() {
+                const column = this.getAttribute('data-column');
+                const columnIndex = index;
+
+                // Toggle sort direction
+                if (sortState.column === column) {
+                    sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortState.column = column;
+                    sortState.direction = 'asc';
+                }
+
+                // Update header classes
+                headers.forEach(h => {
+                    h.classList.remove('sorted-asc', 'sorted-desc');
+                });
+                this.classList.add(sortState.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+                // Sort rows
+                const sortedRows = rows.sort((a, b) => {
+                    const aCell = a.cells[columnIndex].textContent.trim();
+                    const bCell = b.cells[columnIndex].textContent.trim();
+
+                    // Try to parse as number
+                    const aNum = parseFloat(aCell);
+                    const bNum = parseFloat(bCell);
+
+                    if (!isNaN(aNum) && !isNaN(bNum)) {
+                        return sortState.direction === 'asc' ? aNum - bNum : bNum - aNum;
+                    }
+
+                    // String comparison
+                    if (sortState.direction === 'asc') {
+                        return aCell.localeCompare(bCell);
+                    } else {
+                        return bCell.localeCompare(aCell);
+                    }
+                });
+
+                // Re-append rows
+                sortedRows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+</body>
+</html>
