@@ -96,6 +96,34 @@
             background-color: #f6f8fa;
         }
 
+        .category-correctness {
+            background-color: #ff9aa9;
+        }
+
+        .category-suspicious {
+            background-color: #ffc66a;
+        }
+
+        .category-complexity {
+            background-color: #c7ff8a;
+        }
+
+        .category-perf {
+            background-color: #8aff8a;
+        }
+
+        .category-style {
+            background-color: #fff58a;
+        }
+
+        .category-pedantic {
+            background-color: #8ac7ff;
+        }
+
+        .category-restriction {
+            background-color: #c78aff;
+        }
+
         td a {
             color: #0366d6;
             text-decoration: none;
@@ -135,6 +163,7 @@
                     <th class="sortable" data-column="applicability">Applicability</th>
                     <th class="sortable" data-column="configuration">Configuration</th>
                     <th class="sortable" data-column="conflicts">Conflicts</th>
+                    <th class="sortable" data-column="category">Category</th>
                 </tr>
             </thead>
             <tbody>
@@ -147,6 +176,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/A002" target="_blank" class="code rule-code">A002</a></td>
@@ -157,6 +187,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/A003" target="_blank" class="code rule-code">A003</a></td>
@@ -167,6 +198,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/A004" target="_blank" class="code rule-code">A004</a></td>
@@ -177,6 +209,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/A005" target="_blank" class="code rule-code">A005</a></td>
@@ -187,6 +220,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/A006" target="_blank" class="code rule-code">A006</a></td>
@@ -197,6 +231,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/ARG001" target="_blank" class="code rule-code">ARG001</a></td>
@@ -207,6 +242,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/ARG002" target="_blank" class="code rule-code">ARG002</a></td>
@@ -217,6 +253,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/ARG003" target="_blank" class="code rule-code">ARG003</a></td>
@@ -227,6 +264,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/ARG004" target="_blank" class="code rule-code">ARG004</a></td>
@@ -237,6 +275,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/ARG005" target="_blank" class="code rule-code">ARG005</a></td>
@@ -247,6 +286,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B002" target="_blank" class="code rule-code">B002</a></td>
@@ -257,6 +297,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B003" target="_blank" class="code rule-code">B003</a></td>
@@ -267,6 +308,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B004" target="_blank" class="code rule-code">B004</a></td>
@@ -277,6 +319,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B005" target="_blank" class="code rule-code">B005</a></td>
@@ -287,6 +330,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B012" target="_blank" class="code rule-code">B012</a></td>
@@ -297,6 +341,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B015" target="_blank" class="code rule-code">B015</a></td>
@@ -307,6 +352,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B016" target="_blank" class="code rule-code">B016</a></td>
@@ -317,6 +363,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B017" target="_blank" class="code rule-code">B017</a></td>
@@ -327,6 +374,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B019" target="_blank" class="code rule-code">B019</a></td>
@@ -337,6 +385,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B020" target="_blank" class="code rule-code">B020</a></td>
@@ -347,6 +396,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B021" target="_blank" class="code rule-code">B021</a></td>
@@ -357,6 +407,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B022" target="_blank" class="code rule-code">B022</a></td>
@@ -367,6 +418,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B025" target="_blank" class="code rule-code">B025</a></td>
@@ -377,6 +429,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B029" target="_blank" class="code rule-code">B029</a></td>
@@ -387,6 +440,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B030" target="_blank" class="code rule-code">B030</a></td>
@@ -397,6 +451,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B031" target="_blank" class="code rule-code">B031</a></td>
@@ -407,6 +462,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B032" target="_blank" class="code rule-code">B032</a></td>
@@ -417,6 +473,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/B035" target="_blank" class="code rule-code">B035</a></td>
@@ -427,6 +484,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/D419" target="_blank" class="code rule-code">D419</a></td>
@@ -437,6 +495,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E401" target="_blank" class="code rule-code">E401</a></td>
@@ -447,6 +506,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E402" target="_blank" class="code rule-code">E402</a></td>
@@ -457,6 +517,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E701" target="_blank" class="code rule-code">E701</a></td>
@@ -467,6 +528,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>1</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E702" target="_blank" class="code rule-code">E702</a></td>
@@ -477,6 +539,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>1</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E703" target="_blank" class="code rule-code">E703</a></td>
@@ -487,6 +550,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>1</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E711" target="_blank" class="code rule-code">E711</a></td>
@@ -497,6 +561,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E712" target="_blank" class="code rule-code">E712</a></td>
@@ -507,6 +572,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E713" target="_blank" class="code rule-code">E713</a></td>
@@ -517,6 +583,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E714" target="_blank" class="code rule-code">E714</a></td>
@@ -527,6 +594,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E721" target="_blank" class="code rule-code">E721</a></td>
@@ -537,6 +605,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E722" target="_blank" class="code rule-code">E722</a></td>
@@ -547,6 +616,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E731" target="_blank" class="code rule-code">E731</a></td>
@@ -557,6 +627,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E741" target="_blank" class="code rule-code">E741</a></td>
@@ -567,6 +638,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E742" target="_blank" class="code rule-code">E742</a></td>
@@ -577,6 +649,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E743" target="_blank" class="code rule-code">E743</a></td>
@@ -587,6 +660,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/E902" target="_blank" class="code rule-code">E902</a></td>
@@ -597,6 +671,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F401" target="_blank" class="code rule-code">F401</a></td>
@@ -607,6 +682,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F402" target="_blank" class="code rule-code">F402</a></td>
@@ -617,6 +693,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F403" target="_blank" class="code rule-code">F403</a></td>
@@ -627,6 +704,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F404" target="_blank" class="code rule-code">F404</a></td>
@@ -637,6 +715,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F405" target="_blank" class="code rule-code">F405</a></td>
@@ -647,6 +726,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F406" target="_blank" class="code rule-code">F406</a></td>
@@ -657,6 +737,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-style">style</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F407" target="_blank" class="code rule-code">F407</a></td>
@@ -667,6 +748,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F501" target="_blank" class="code rule-code">F501</a></td>
@@ -677,6 +759,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F502" target="_blank" class="code rule-code">F502</a></td>
@@ -687,6 +770,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F503" target="_blank" class="code rule-code">F503</a></td>
@@ -697,6 +781,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F504" target="_blank" class="code rule-code">F504</a></td>
@@ -707,6 +792,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F505" target="_blank" class="code rule-code">F505</a></td>
@@ -717,6 +803,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F506" target="_blank" class="code rule-code">F506</a></td>
@@ -727,6 +814,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F507" target="_blank" class="code rule-code">F507</a></td>
@@ -737,6 +825,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F508" target="_blank" class="code rule-code">F508</a></td>
@@ -747,6 +836,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F509" target="_blank" class="code rule-code">F509</a></td>
@@ -757,6 +847,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F521" target="_blank" class="code rule-code">F521</a></td>
@@ -767,6 +858,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F522" target="_blank" class="code rule-code">F522</a></td>
@@ -777,6 +869,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F523" target="_blank" class="code rule-code">F523</a></td>
@@ -787,6 +880,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F524" target="_blank" class="code rule-code">F524</a></td>
@@ -797,6 +891,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F525" target="_blank" class="code rule-code">F525</a></td>
@@ -807,6 +902,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F541" target="_blank" class="code rule-code">F541</a></td>
@@ -817,6 +913,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F601" target="_blank" class="code rule-code">F601</a></td>
@@ -827,6 +924,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F602" target="_blank" class="code rule-code">F602</a></td>
@@ -837,6 +935,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F621" target="_blank" class="code rule-code">F621</a></td>
@@ -847,6 +946,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F622" target="_blank" class="code rule-code">F622</a></td>
@@ -857,6 +957,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F631" target="_blank" class="code rule-code">F631</a></td>
@@ -867,6 +968,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F632" target="_blank" class="code rule-code">F632</a></td>
@@ -877,6 +979,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F633" target="_blank" class="code rule-code">F633</a></td>
@@ -887,6 +990,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F634" target="_blank" class="code rule-code">F634</a></td>
@@ -897,6 +1001,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F701" target="_blank" class="code rule-code">F701</a></td>
@@ -907,6 +1012,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F702" target="_blank" class="code rule-code">F702</a></td>
@@ -917,6 +1023,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F704" target="_blank" class="code rule-code">F704</a></td>
@@ -927,6 +1034,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F706" target="_blank" class="code rule-code">F706</a></td>
@@ -937,6 +1045,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F707" target="_blank" class="code rule-code">F707</a></td>
@@ -947,6 +1056,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F722" target="_blank" class="code rule-code">F722</a></td>
@@ -957,6 +1067,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F811" target="_blank" class="code rule-code">F811</a></td>
@@ -967,6 +1078,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F821" target="_blank" class="code rule-code">F821</a></td>
@@ -977,6 +1089,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F822" target="_blank" class="code rule-code">F822</a></td>
@@ -987,6 +1100,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F823" target="_blank" class="code rule-code">F823</a></td>
@@ -997,6 +1111,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F841" target="_blank" class="code rule-code">F841</a></td>
@@ -1007,6 +1122,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F842" target="_blank" class="code rule-code">F842</a></td>
@@ -1017,6 +1133,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/F901" target="_blank" class="code rule-code">F901</a></td>
@@ -1027,6 +1144,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/FURB163" target="_blank" class="code rule-code">FURB163</a></td>
@@ -1037,6 +1155,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/LOG001" target="_blank" class="code rule-code">LOG001</a></td>
@@ -1047,6 +1166,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PIE794" target="_blank" class="code rule-code">PIE794</a></td>
@@ -1057,6 +1177,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PIE796" target="_blank" class="code rule-code">PIE796</a></td>
@@ -1067,6 +1188,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLC0131" target="_blank" class="code rule-code">PLC0131</a></td>
@@ -1077,6 +1199,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLC0132" target="_blank" class="code rule-code">PLC0132</a></td>
@@ -1087,6 +1210,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLC0205" target="_blank" class="code rule-code">PLC0205</a></td>
@@ -1097,6 +1221,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0100" target="_blank" class="code rule-code">PLE0100</a></td>
@@ -1107,6 +1232,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0101" target="_blank" class="code rule-code">PLE0101</a></td>
@@ -1117,6 +1243,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0115" target="_blank" class="code rule-code">PLE0115</a></td>
@@ -1127,6 +1254,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0116" target="_blank" class="code rule-code">PLE0116</a></td>
@@ -1137,6 +1265,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0117" target="_blank" class="code rule-code">PLE0117</a></td>
@@ -1147,6 +1276,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0118" target="_blank" class="code rule-code">PLE0118</a></td>
@@ -1157,6 +1287,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0237" target="_blank" class="code rule-code">PLE0237</a></td>
@@ -1167,6 +1298,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0241" target="_blank" class="code rule-code">PLE0241</a></td>
@@ -1177,6 +1309,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0302" target="_blank" class="code rule-code">PLE0302</a></td>
@@ -1187,6 +1320,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0303" target="_blank" class="code rule-code">PLE0303</a></td>
@@ -1197,6 +1331,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0305" target="_blank" class="code rule-code">PLE0305</a></td>
@@ -1207,6 +1342,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0307" target="_blank" class="code rule-code">PLE0307</a></td>
@@ -1217,6 +1353,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0308" target="_blank" class="code rule-code">PLE0308</a></td>
@@ -1227,6 +1364,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0309" target="_blank" class="code rule-code">PLE0309</a></td>
@@ -1237,6 +1375,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0604" target="_blank" class="code rule-code">PLE0604</a></td>
@@ -1247,6 +1386,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0605" target="_blank" class="code rule-code">PLE0605</a></td>
@@ -1257,6 +1397,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0643" target="_blank" class="code rule-code">PLE0643</a></td>
@@ -1267,6 +1408,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE0704" target="_blank" class="code rule-code">PLE0704</a></td>
@@ -1277,6 +1419,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1132" target="_blank" class="code rule-code">PLE1132</a></td>
@@ -1287,6 +1430,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1142" target="_blank" class="code rule-code">PLE1142</a></td>
@@ -1297,6 +1441,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1205" target="_blank" class="code rule-code">PLE1205</a></td>
@@ -1307,6 +1452,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1206" target="_blank" class="code rule-code">PLE1206</a></td>
@@ -1317,6 +1463,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1300" target="_blank" class="code rule-code">PLE1300</a></td>
@@ -1327,6 +1474,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1307" target="_blank" class="code rule-code">PLE1307</a></td>
@@ -1337,6 +1485,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1310" target="_blank" class="code rule-code">PLE1310</a></td>
@@ -1347,6 +1496,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1507" target="_blank" class="code rule-code">PLE1507</a></td>
@@ -1357,6 +1507,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE1700" target="_blank" class="code rule-code">PLE1700</a></td>
@@ -1367,6 +1518,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2502" target="_blank" class="code rule-code">PLE2502</a></td>
@@ -1377,6 +1529,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2510" target="_blank" class="code rule-code">PLE2510</a></td>
@@ -1387,6 +1540,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2512" target="_blank" class="code rule-code">PLE2512</a></td>
@@ -1397,6 +1551,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2513" target="_blank" class="code rule-code">PLE2513</a></td>
@@ -1407,6 +1562,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2514" target="_blank" class="code rule-code">PLE2514</a></td>
@@ -1417,6 +1573,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLE2515" target="_blank" class="code rule-code">PLE2515</a></td>
@@ -1427,6 +1584,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLR0124" target="_blank" class="code rule-code">PLR0124</a></td>
@@ -1437,6 +1595,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLR0133" target="_blank" class="code rule-code">PLR0133</a></td>
@@ -1447,6 +1606,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLR0206" target="_blank" class="code rule-code">PLR0206</a></td>
@@ -1457,6 +1617,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLR1704" target="_blank" class="code rule-code">PLR1704</a></td>
@@ -1467,6 +1628,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLR1722" target="_blank" class="code rule-code">PLR1722</a></td>
@@ -1477,6 +1639,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0120" target="_blank" class="code rule-code">PLW0120</a></td>
@@ -1487,6 +1650,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0127" target="_blank" class="code rule-code">PLW0127</a></td>
@@ -1497,6 +1661,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0128" target="_blank" class="code rule-code">PLW0128</a></td>
@@ -1507,6 +1672,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0129" target="_blank" class="code rule-code">PLW0129</a></td>
@@ -1517,6 +1683,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0131" target="_blank" class="code rule-code">PLW0131</a></td>
@@ -1527,6 +1694,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0133" target="_blank" class="code rule-code">PLW0133</a></td>
@@ -1537,6 +1705,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0177" target="_blank" class="code rule-code">PLW0177</a></td>
@@ -1547,6 +1716,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0245" target="_blank" class="code rule-code">PLW0245</a></td>
@@ -1557,6 +1727,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0406" target="_blank" class="code rule-code">PLW0406</a></td>
@@ -1567,6 +1738,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0602" target="_blank" class="code rule-code">PLW0602</a></td>
@@ -1577,6 +1749,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0604" target="_blank" class="code rule-code">PLW0604</a></td>
@@ -1587,6 +1760,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW0711" target="_blank" class="code rule-code">PLW0711</a></td>
@@ -1597,6 +1771,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW1501" target="_blank" class="code rule-code">PLW1501</a></td>
@@ -1607,6 +1782,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW1507" target="_blank" class="code rule-code">PLW1507</a></td>
@@ -1617,6 +1793,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW1508" target="_blank" class="code rule-code">PLW1508</a></td>
@@ -1627,6 +1804,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW1509" target="_blank" class="code rule-code">PLW1509</a></td>
@@ -1637,6 +1815,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW1510" target="_blank" class="code rule-code">PLW1510</a></td>
@@ -1647,6 +1826,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW2101" target="_blank" class="code rule-code">PLW2101</a></td>
@@ -1657,6 +1837,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PLW2901" target="_blank" class="code rule-code">PLW2901</a></td>
@@ -1667,6 +1848,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PTH210" target="_blank" class="code rule-code">PTH210</a></td>
@@ -1677,6 +1859,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI006" target="_blank" class="code rule-code">PYI006</a></td>
@@ -1687,6 +1870,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI016" target="_blank" class="code rule-code">PYI016</a></td>
@@ -1697,6 +1881,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI018" target="_blank" class="code rule-code">PYI018</a></td>
@@ -1707,6 +1892,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI046" target="_blank" class="code rule-code">PYI046</a></td>
@@ -1717,6 +1903,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI047" target="_blank" class="code rule-code">PYI047</a></td>
@@ -1727,6 +1914,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI049" target="_blank" class="code rule-code">PYI049</a></td>
@@ -1737,6 +1925,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI057" target="_blank" class="code rule-code">PYI057</a></td>
@@ -1747,6 +1936,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI059" target="_blank" class="code rule-code">PYI059</a></td>
@@ -1757,6 +1947,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI062" target="_blank" class="code rule-code">PYI062</a></td>
@@ -1767,6 +1958,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF016" target="_blank" class="code rule-code">RUF016</a></td>
@@ -1777,6 +1969,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF018" target="_blank" class="code rule-code">RUF018</a></td>
@@ -1787,6 +1980,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF026" target="_blank" class="code rule-code">RUF026</a></td>
@@ -1797,6 +1991,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF028" target="_blank" class="code rule-code">RUF028</a></td>
@@ -1807,6 +2002,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF030" target="_blank" class="code rule-code">RUF030</a></td>
@@ -1817,6 +2013,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF033" target="_blank" class="code rule-code">RUF033</a></td>
@@ -1827,6 +2024,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF034" target="_blank" class="code rule-code">RUF034</a></td>
@@ -1837,6 +2035,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF040" target="_blank" class="code rule-code">RUF040</a></td>
@@ -1847,6 +2046,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF048" target="_blank" class="code rule-code">RUF048</a></td>
@@ -1857,6 +2057,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF049" target="_blank" class="code rule-code">RUF049</a></td>
@@ -1867,6 +2068,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF053" target="_blank" class="code rule-code">RUF053</a></td>
@@ -1877,6 +2079,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF059" target="_blank" class="code rule-code">RUF059</a></td>
@@ -1887,6 +2090,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF100" target="_blank" class="code rule-code">RUF100</a></td>
@@ -1897,6 +2101,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF101" target="_blank" class="code rule-code">RUF101</a></td>
@@ -1907,6 +2112,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF200" target="_blank" class="code rule-code">RUF200</a></td>
@@ -1917,6 +2123,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/SIM107" target="_blank" class="code rule-code">SIM107</a></td>
@@ -1927,6 +2134,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/T100" target="_blank" class="code rule-code">T100</a></td>
@@ -1937,6 +2145,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/TC004" target="_blank" class="code rule-code">TC004</a></td>
@@ -1947,6 +2156,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/TC007" target="_blank" class="code rule-code">TC007</a></td>
@@ -1957,6 +2167,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/TC010" target="_blank" class="code rule-code">TC010</a></td>
@@ -1967,6 +2178,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/TRY300" target="_blank" class="code rule-code">TRY300</a></td>
@@ -1977,6 +2189,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP005" target="_blank" class="code rule-code">UP005</a></td>
@@ -1987,6 +2200,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP019" target="_blank" class="code rule-code">UP019</a></td>
@@ -1997,6 +2211,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP021" target="_blank" class="code rule-code">UP021</a></td>
@@ -2007,6 +2222,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP023" target="_blank" class="code rule-code">UP023</a></td>
@@ -2017,6 +2233,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP024" target="_blank" class="code rule-code">UP024</a></td>
@@ -2027,6 +2244,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP035" target="_blank" class="code rule-code">UP035</a></td>
@@ -2037,6 +2255,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP036" target="_blank" class="code rule-code">UP036</a></td>
@@ -2047,6 +2266,7 @@
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP041" target="_blank" class="code rule-code">UP041</a></td>
@@ -2057,6 +2277,7 @@
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/W605" target="_blank" class="code rule-code">W605</a></td>
@@ -2067,6 +2288,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-correctness">correctness</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT101" target="_blank" class="code rule-code">YTT101</a></td>
@@ -2077,6 +2299,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT102" target="_blank" class="code rule-code">YTT102</a></td>
@@ -2087,6 +2310,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT103" target="_blank" class="code rule-code">YTT103</a></td>
@@ -2097,6 +2321,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT201" target="_blank" class="code rule-code">YTT201</a></td>
@@ -2107,6 +2332,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT203" target="_blank" class="code rule-code">YTT203</a></td>
@@ -2117,6 +2343,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT204" target="_blank" class="code rule-code">YTT204</a></td>
@@ -2127,6 +2354,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT301" target="_blank" class="code rule-code">YTT301</a></td>
@@ -2137,6 +2365,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT302" target="_blank" class="code rule-code">YTT302</a></td>
@@ -2147,6 +2376,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/YTT303" target="_blank" class="code rule-code">YTT303</a></td>
@@ -2157,6 +2387,7 @@
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
+                    <td class="category-suspicious">suspicious</td>
                 </tr>
             </tbody>
         </table>

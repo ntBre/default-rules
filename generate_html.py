@@ -108,6 +108,34 @@ def generate_html_table(df, title, filename):
             background-color: #f6f8fa;
         }}
 
+        .category-correctness {{
+            background-color: #ff9aa9;
+        }}
+
+        .category-suspicious {{
+            background-color: #ffc66a;
+        }}
+
+        .category-complexity {{
+            background-color: #c7ff8a;
+        }}
+
+        .category-perf {{
+            background-color: #8aff8a;
+        }}
+
+        .category-style {{
+            background-color: #fff58a;
+        }}
+
+        .category-pedantic {{
+            background-color: #8ac7ff;
+        }}
+
+        .category-restriction {{
+            background-color: #c78aff;
+        }}
+
         td a {{
             color: #0366d6;
             text-decoration: none;
@@ -152,24 +180,29 @@ def generate_html_table(df, title, filename):
         html_template += "                <tr>\n"
         for col in df.columns:
             value = row[col]
+            # Add category class to category cells
+            cell_class = ""
+            if col == "category" and value:
+                cell_class = f' class="category-{value.lower()}"'
+
             if col == "rule":
                 # Rule code with link
                 rule_url = f"https://docs.astral.sh/ruff/rules/{value}"
-                html_template += f'                    <td><a href="{rule_url}" target="_blank" class="code rule-code">{value}</a></td>\n'
+                html_template += f'                    <td{cell_class}><a href="{rule_url}" target="_blank" class="code rule-code">{value}</a></td>\n'
             elif col == "name":
                 # Name is already a slug, make it readable and add link
                 rule_code = row.get("rule", "")
                 if rule_code:
                     rule_url = f"https://docs.astral.sh/ruff/rules/{rule_code}"
-                    html_template += f'                    <td><a href="{rule_url}" target="_blank">{value}</a></td>\n'
+                    html_template += f'                    <td{cell_class}><a href="{rule_url}" target="_blank">{value}</a></td>\n'
                 else:
-                    html_template += f"                    <td>{value}</td>\n"
+                    html_template += f"                    <td{cell_class}>{value}</td>\n"
             elif value is None:
-                html_template += "                    <td></td>\n"
+                html_template += f"                    <td{cell_class}></td>\n"
             elif isinstance(value, (int, float)):
-                html_template += f"                    <td>{value}</td>\n"
+                html_template += f"                    <td{cell_class}>{value}</td>\n"
             else:
-                html_template += f"                    <td>{value}</td>\n"
+                html_template += f"                    <td{cell_class}>{value}</td>\n"
         html_template += "                </tr>\n"
     html_template += "            </tbody>\n"
 
@@ -288,7 +321,7 @@ def generate_index_page():
 </body>
 </html>"""
 
-    with open("index.html", "w") as f:
+    with open("docs/index.html", "w") as f:
         f.write(html)
 
     print("Generated index.html")
