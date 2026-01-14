@@ -852,6 +852,14 @@ category = Category(
 )
 
 
+# ### Non-default categories
+
+# In[38]:
+
+
+off_by_default.filter(pl.col("type") == "Stable", pl.col("severity") == 2)
+
+
 # ## Export HTML
 
 # In[28]:
