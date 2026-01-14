@@ -197,6 +197,16 @@ def generate_html_table(df, title, filename):
                     html_template += f'                    <td{cell_class}><a href="{rule_url}" target="_blank">{value}</a></td>\n'
                 else:
                     html_template += f"                    <td{cell_class}>{value}</td>\n"
+            elif col == "ecosystem":
+                # Ecosystem count with link to ecosystem.html
+                rule_code = row.get("rule", "")
+                if rule_code and value:
+                    ecosystem_url = f"ecosystem.html#{rule_code}"
+                    html_template += f'                    <td{cell_class}><a href="{ecosystem_url}">{value}</a></td>\n'
+                elif value is not None:
+                    html_template += f"                    <td{cell_class}>{value}</td>\n"
+                else:
+                    html_template += f"                    <td{cell_class}></td>\n"
             elif value is None:
                 html_template += f"                    <td{cell_class}></td>\n"
             elif isinstance(value, (int, float)):
