@@ -854,13 +854,13 @@ category = Category(
 
 # ### Non-default categories
 
-# In[38]:
+# In[28]:
 
 
 off_by_default.filter(pl.col("type") == "Stable", pl.col("severity") == 2)
 
 
-# In[40]:
+# In[29]:
 
 
 import sqlite3
@@ -871,9 +871,32 @@ codes, categories = zip(*cur.execute("SELECT code, category FROM rules").fetchal
 stable_categories = pl.from_dict({"rule": codes, "category": categories})
 
 
+# In[30]:
+
+
+(
+    stable_off_by_default
+    .join(stable_categories, on="rule", how="left")
+    .select(
+        "rule",
+        "name",
+        "category",
+        "accuracy",
+        "severity",
+        "fixability",
+        "applicability",
+        "configuration",
+        "conflicts",
+        "ecosystem",
+    )
+    .filter(~pl.col("category").is_null())
+    .sort("rule")
+)
+
+
 # ## Export HTML
 
-# In[42]:
+# In[31]:
 
 
 # Generate HTML for off-by-default rules
