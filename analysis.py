@@ -860,9 +860,20 @@ category = Category(
 off_by_default.filter(pl.col("type") == "Stable", pl.col("severity") == 2)
 
 
+# In[40]:
+
+
+import sqlite3
+
+conn = sqlite3.connect("categories.db")
+cur = conn.cursor()
+codes, categories = zip(*cur.execute("SELECT code, category FROM rules").fetchall())
+stable_categories = pl.from_dict({"rule": codes, "category": categories})
+
+
 # ## Export HTML
 
-# In[28]:
+# In[42]:
 
 
 # Generate HTML for off-by-default rules
@@ -889,9 +900,12 @@ generate_html_table(
 )
 
 generate_html_table(
-    stable_off_by_default.select(
+    stable_off_by_default
+    .join(stable_categories, on="rule", how="left")
+    .select(
         "rule",
         "name",
+        "category",
         "accuracy",
         "severity",
         "fixability",
@@ -899,7 +913,8 @@ generate_html_table(
         "configuration",
         "conflicts",
         "ecosystem",
-    ).sort("rule"),
+    )
+    .sort("rule"),
     "Off-by-Default Ruff Rules",
     "docs/off_by_default.html",
 )
