@@ -856,7 +856,7 @@ category = Category(
 
 # #### High severity
 
-# In[ ]:
+# In[28]:
 
 
 high_severity = off_by_default.filter(
@@ -901,7 +901,7 @@ stable_categories = pl.from_dict({"rule": codes, "category": categories})
 
 # #### High score (> 11)
 
-# In[46]:
+# In[31]:
 
 
 high_score_11 = off_by_default.filter(
@@ -913,7 +913,7 @@ high_score_11
 
 # ## Export HTML
 
-# In[31]:
+# In[ ]:
 
 
 # Generate HTML for off-by-default rules
@@ -933,6 +933,7 @@ generate_html_table(
         "applicability",
         "configuration",
         "conflicts",
+        "total",
         "ecosystem",
     ).sort("rule"),
     "Proposed Default Ruff Rules",
@@ -952,11 +953,33 @@ generate_html_table(
         "applicability",
         "configuration",
         "conflicts",
+        "total",
         "ecosystem",
     )
     .sort("rule"),
     "Off-by-Default Ruff Rules",
     "docs/off_by_default.html",
+)
+
+generate_html_table(
+    high_score_11
+    .join(stable_categories, on="rule", how="left")
+    .select(
+        "rule",
+        "name",
+        "category",
+        "accuracy",
+        "severity",
+        "fixability",
+        "applicability",
+        "configuration",
+        "conflicts",
+        "total",
+        "ecosystem",
+    )
+    .sort("rule"),
+    "Score > 11",
+    "docs/high_score.html",
 )
 
 # Generate index page

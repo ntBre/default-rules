@@ -161,6 +161,7 @@ def generate_html_table(df, title, filename):
         <a href="index.html">Home</a>
         <a href="on_by_default.html">Default Rules</a>
         <a href="off_by_default.html">Off-by-Default Rules</a>
+        <a href="high_score.html">Off-by-Default Rules (Score >11)</a>
     </nav>
 
     <div class="table-wrapper">
@@ -345,6 +346,7 @@ def generate_index_page():
         <a href="index.html">Home</a>
         <a href="on_by_default.html">Default Rules</a>
         <a href="off_by_default.html">Off-by-Default Rules</a>
+        <a href="high_score.html">Off-by-Default Rules (Score >11)</a>
     </nav>
 </body>
 </html>"""
