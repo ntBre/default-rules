@@ -854,10 +854,15 @@ category = Category(
 
 # ### Non-default categories
 
-# In[28]:
+# #### High severity
+
+# In[ ]:
 
 
-off_by_default.filter(pl.col("type") == "Stable", pl.col("severity") == 2)
+high_severity = off_by_default.filter(
+    pl.col("type") == "Stable", pl.col("severity") == 2
+)
+high_severity
 
 
 # In[29]:
@@ -892,6 +897,18 @@ stable_categories = pl.from_dict({"rule": codes, "category": categories})
     .filter(~pl.col("category").is_null())
     .sort("rule")
 )
+
+
+# #### High score (> 11)
+
+# In[46]:
+
+
+high_score_11 = off_by_default.filter(
+    pl.col("type") == "Stable", pl.col("total") >= 11
+).join(high_severity, on="rule", how="anti")
+high_score_11.write_csv("queue.csv")
+high_score_11
 
 
 # ## Export HTML
