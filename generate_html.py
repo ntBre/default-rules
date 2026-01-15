@@ -227,6 +227,17 @@ def generate_html_table(df, title, filename):
         const headers = table.querySelectorAll('th.sortable');
         let sortState = {};
 
+        // Custom category order
+        const categoryOrder = {
+            'correctness': 0,
+            'suspicious': 1,
+            'style': 2,
+            'complexity': 3,
+            'perf': 4,
+            'pedantic': 5,
+            'restriction': 6
+        };
+
         headers.forEach((header, index) => {
             header.addEventListener('click', function() {
                 const column = this.getAttribute('data-column');
@@ -250,6 +261,13 @@ def generate_html_table(df, title, filename):
                 const sortedRows = rows.sort((a, b) => {
                     const aCell = a.cells[columnIndex].textContent.trim();
                     const bCell = b.cells[columnIndex].textContent.trim();
+
+                    // Special handling for category column
+                    if (column === 'category') {
+                        const aOrder = categoryOrder[aCell.toLowerCase()] ?? 999;
+                        const bOrder = categoryOrder[bCell.toLowerCase()] ?? 999;
+                        return sortState.direction === 'asc' ? aOrder - bOrder : bOrder - aOrder;
+                    }
 
                     // Try to parse as number
                     const aNum = parseFloat(aCell);
