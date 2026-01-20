@@ -873,7 +873,11 @@ import sqlite3
 conn = sqlite3.connect("categories.db")
 cur = conn.cursor()
 codes, categories = zip(*cur.execute("SELECT code, category FROM rules").fetchall())
-stable_categories = pl.from_dict({"rule": codes, "category": categories})
+stable_categories = pl.from_dict({"rule": codes, "category": categories}).unique("rule")
+assert stable_categories.filter(pl.col("category").is_null()).height == 0, (
+    "non-default rule with missing category"
+)
+stable_categories.height
 
 
 # In[30]:
@@ -911,6 +915,44 @@ high_score_11.write_csv("queue.csv")
 high_score_11
 
 
+# #### Score [9, 11)
+
+# In[32]:
+
+
+score_9_11 = (
+    off_by_default
+    .filter(pl.col("type") == "Stable", pl.col("total") >= 9)
+    .join(high_severity, on="rule", how="anti")
+    .join(high_score_11, on="rule", how="anti")
+    .sort("total", descending=True)
+)
+score_9_11
+
+
+# In[33]:
+
+
+score_9_11.write_csv("queue_9_11.csv")
+
+
+# #### Remaining
+
+# In[34]:
+
+
+non_default_rest = (
+    off_by_default
+    .filter(pl.col("type") == "Stable")
+    .join(high_severity, on="rule", how="anti")
+    .join(high_score_11, on="rule", how="anti")
+    .join(score_9_11, on="rule", how="anti")
+    .sort("rule")
+)
+non_default_rest.write_csv("queue_non_default_rest.csv")
+non_default_rest
+
+
 # ## Export HTML
 
 # In[ ]:
@@ -919,44 +961,47 @@ high_score_11
 # Generate HTML for off-by-default rules
 from generate_html import generate_html_table, generate_index_page
 
+proposed_categories = proposed.select(
+    "rule",
+    "name",
+    pl
+    .col("rule")
+    .map_elements(category.assign, return_dtype=pl.String)
+    .alias("category"),
+    "accuracy",
+    "severity",
+    "fixability",
+    "applicability",
+    "configuration",
+    "conflicts",
+    "total",
+    "ecosystem",
+)
+
 generate_html_table(
-    proposed.select(
-        "rule",
-        "name",
-        pl
-        .col("rule")
-        .map_elements(category.assign, return_dtype=pl.String)
-        .alias("category"),
-        "accuracy",
-        "severity",
-        "fixability",
-        "applicability",
-        "configuration",
-        "conflicts",
-        "total",
-        "ecosystem",
-    ).sort("rule"),
+    proposed_categories.sort("rule"),
     "Proposed Default Ruff Rules",
     "docs/on_by_default.html",
 )
 
+non_default_categories = stable_off_by_default.join(
+    stable_categories, on="rule", how="left"
+).select(
+    "rule",
+    "name",
+    "category",
+    "accuracy",
+    "severity",
+    "fixability",
+    "applicability",
+    "configuration",
+    "conflicts",
+    "total",
+    "ecosystem",
+)
+
 generate_html_table(
-    stable_off_by_default
-    .join(stable_categories, on="rule", how="left")
-    .select(
-        "rule",
-        "name",
-        "category",
-        "accuracy",
-        "severity",
-        "fixability",
-        "applicability",
-        "configuration",
-        "conflicts",
-        "total",
-        "ecosystem",
-    )
-    .sort("rule"),
+    non_default_categories.sort("rule"),
     "Off-by-Default Ruff Rules",
     "docs/off_by_default.html",
 )
@@ -984,4 +1029,32 @@ generate_html_table(
 
 # Generate index page
 generate_index_page()
+
+
+# ## Validate counts
+
+# In[36]:
+
+
+total = full.height
+n_initial_proposal = proposed.height
+n_off_by_default = off_by_default.height
+n_preview = off_by_default.filter(pl.col("type") == "Preview").height
+n_stable = off_by_default.filter(pl.col("type") == "Stable").height
+
+assert stable_categories.height == n_stable, (
+    f"Mismatch: {stable_categories.height} != {n_stable}"
+)
+
+assert n_initial_proposal + n_off_by_default == total
+
+
+# ## Export
+
+# In[ ]:
+
+
+proposed_categories.write_csv("proposed.csv")
+
+proposed_categories.head(5)
 
