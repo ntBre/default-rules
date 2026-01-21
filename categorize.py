@@ -99,6 +99,7 @@ def main():
             "j": None,
             "k": None,
             "q": None,
+            "/": None,
         }
 
         cursor = conn.cursor()
@@ -109,10 +110,10 @@ def main():
         while True:
             response = input(
                 "\n(c)orrectness, (s)uspicious, comple(x)ity, per(f), st(y)le, (p)edantic, (r)estriction\n"
-                "j: next, k: prev, q: quit\n"
+                "j: next, k: prev, q: quit, /<rule>: jump to rule\n"
                 + (f"current value = {result[1]}\n" if result else "")
             )
-            if response in responses:
+            if len(response) > 0 and response[0] in responses:
                 break
             print(f"unknown response {response}")
 
@@ -121,6 +122,10 @@ def main():
             continue
         elif response == "k":
             cur = max(0, cur - 1)
+            continue
+        elif response[0] == "/":
+            rest = response.removeprefix("/")
+            cur = position(rows, lambda row: row[0].lower() == rest.lower()) or cur
             continue
         elif response == "q":
             break
@@ -132,6 +137,10 @@ def main():
             )
 
         cur += 1
+
+
+def position(it, p) -> int | None:
+    return next((i for i, x in enumerate(it) if p(x)), None)
 
 
 if __name__ == "__main__":
