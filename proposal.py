@@ -63,7 +63,7 @@ def load_categories(path="categories.db"):
     return categories
 
 
-def load_rules(path) -> pl.DataFrame:
+def load_rules(path, categories: pl.DataFrame) -> pl.DataFrame:
     return (
         pl
         .read_csv(path)
@@ -73,14 +73,18 @@ def load_rules(path) -> pl.DataFrame:
             .replace_strict(severity, return_dtype=pl.Int8)
             .alias("_severity")
         )
+        .join(categories, on="rule", how="left")
+        .with_columns(pl.col("category_right").alias("category"))
+        .drop("category_right")
+        .unique("rule")
         .sort("_severity", "rule")
     )
 
 
 # update any modified categories
 categories = load_categories()
-initial = load_rules("proposed.csv").join(categories, on="rule", how="left")
-non_default = load_rules("off_by_default.csv").join(categories, on="rule", how="left")
+initial = load_rules("proposed.csv", categories)
+non_default = load_rules("off_by_default.csv", categories)
 
 
 # Potentially controversial rules that I suggest to keep in the proposed
