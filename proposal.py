@@ -16,6 +16,9 @@ RULE_DATA = json.loads(
         capture_output=True,
     ).stdout
 )
+STABLE_RULES = {
+    rule["code"] for rule in RULE_DATA if next(iter(rule["status"])) == "Stable"
+}
 RULES = {rule["code"]: rule["name"] for rule in RULE_DATA}
 
 
@@ -155,6 +158,255 @@ to_add = expand_prefixes([
     "PYI026",
     # This actually seems like a Complexity lint on second thought
     "SIM911",
+    # I marked these all as Correctness and still think that's accurate
+    "B014",
+    "B033",
+    "EXE001",
+    "EXE002",
+    "EXE004",
+    "EXE005",
+    "FA102",
+    "G101",
+    "PGH005",
+    "PT010",
+    "PT014",
+    "PT025",
+    "PT026",
+    "PYI010",
+    "PYI035",
+    # I'm including these mutable default rules somewhat tentatively. They are
+    # definitely problems when detected accurately, but I think we may need
+    # better type inference before we enable them by default.
+    "B006",
+    "B008",
+    "B039",
+    "RUF008",
+    "RUF009",
+    "RUF012",
+    "RUF024",
+    # This is kind of like a mutable default and also severe when detected
+    # accurately, but it has some significant open issues
+    "B023",
+    # Miscellaneous Suspicious rules missing from the first draft
+    "B011",
+    "B018",
+    "BLE001",
+    "EXE003",
+    "LOG002",
+    "LOG009",
+    "LOG014",
+    "PLE1520",
+    "PT012",
+    "PT020",
+    "PT028",
+    "PT031",
+    "PTH124",
+    "PYI003",
+    "PYI004",
+    "PYI005",
+    "PYI017",
+    "PYI036",
+    "PYI045",
+    "PYI051",
+    "S110",
+    "S112",
+    "SIM115",
+    "SIM220",
+    "SIM221",
+    "UP026",
+    "YTT202",
+    # not sure about these, could be pedantic
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    # Perf rules that seem reasonable. I don't think these are strictly Perf
+    # and could fit into Complexity or Style as well if they don't improve
+    # "performance" per se
+    "PERF101",
+    "PERF102",
+    "PERF401",
+    "PERF403",
+    "PLC0208",
+    "RUF015",
+    "RUF017",
+    # Complexity: I think these are all pretty clear simplifications
+    "FURB116",
+    "FURB161",
+    "FURB162",
+    "FURB166",
+    "FURB168",
+    "FURB169",
+    "PERF402",
+    "PLC0206",
+    "PLC0414",
+    "PLC3002",
+    "PLR0402",
+    "RUF046",
+    "RUF051",
+    "RUF057",
+    "RUF058",
+    "SIM101",
+    "SIM102",
+    "SIM103",
+    "SIM110",
+    "SIM113",
+    "SIM114",
+    "SIM117",
+    "SIM118",
+    "SIM201",
+    "SIM202",
+    "SIM208",
+    "SIM210",
+    "SIM211",
+    "SIM222",
+    "SIM223",
+    "SIM401",
+    "SIM905",
+    "TRY201",
+    "TRY203",
+    "TRY301",
+    "UP029",
+    "UP034",
+    "UP043",
+    "UP044",
+    "UP045",
+    "UP046",
+    "UP047",
+    # I categorized these as Style lints and think they make sense to include
+    "B009",
+    "B010",
+    "B013",
+    "B026",
+    "FA100",
+    "FLY002",
+    "FURB105",
+    "FURB122",
+    "FURB129",
+    "FURB132",
+    "FURB136",
+    "FURB157",
+    "FURB167",
+    "FURB177",
+    "FURB181",
+    "FURB187",
+    "FURB188",
+    "G001",
+    "G002",
+    "G003",
+    "G004",
+    "G010",
+    "G201",
+    "G202",
+    "I001",
+    "LOG015",
+    "N801",
+    "N802",
+    "N803",
+    "N804",
+    "N805",
+    "N806",
+    "N807",
+    "N811",
+    "N812",
+    "N813",
+    "N814",
+    "N815",
+    "N816",
+    "N817",
+    "N818",
+    "N999",
+    "PIE790",
+    "PIE800",
+    "PIE804",
+    "PIE807",
+    "PIE808",
+    "PIE810",
+    "PLC2401",
+    "PLE1519",
+    "PLR1711",
+    "PLR1714",
+    "PLR1716",
+    "PLR1730",
+    "PLR1733",
+    "PLR1736",
+    "PLR2044",
+    "PLR5501",
+    "PLW0211",
+    "PLW0642",
+    "PTH201",
+    "PYI001",
+    "PYI013",
+    "PYI019",
+    "PYI020",
+    "PYI021",
+    "PYI025",
+    "PYI029",
+    "PYI030",
+    "PYI032",
+    "PYI033",
+    "PYI041",
+    "PYI042",
+    "PYI043",
+    "PYI044",
+    "PYI048",
+    "PYI052",
+    "PYI055",
+    "PYI058",
+    "PYI061",
+    "PYI063",
+    "PYI064",
+    "PYI066",
+    "RET501",
+    "RET504",
+    "RET505",
+    "RET506",
+    "RET507",
+    "RET508",
+    "RUF005",
+    "RUF007",
+    "RUF010",
+    "RUF013",
+    "RUF019",
+    "RUF020",
+    "RUF021",
+    "RUF022",
+    "RUF023",
+    "RUF032",
+    "RUF041",
+    "SIM105",
+    "TC005",
+    "TID252",
+    "TRY002",
+    "TRY004",
+    "TRY401",
+    "UP001",
+    "UP003",
+    "UP004",
+    "UP006",
+    "UP007",
+    "UP008",
+    "UP009",
+    "UP010",
+    "UP011",
+    "UP012",
+    "UP013",
+    "UP014",
+    "UP015",
+    "UP017",
+    "UP018",
+    "UP020",
+    "UP022",
+    "UP025",
+    "UP028",
+    "UP030",
+    "UP031",
+    "UP032",
+    "UP033",
+    "UP037",
+    "UP039",
+    "UP040",
+    "UP049",
+    "UP050",
 ])
 
 # Rules not in the initial proposal that I think should stay that way.
@@ -167,6 +419,7 @@ to_exclude = expand_prefixes([
     "PD002",
     "PD003",
     "PD004",
+    "PD007",
     "PD008",
     "PD009",
     "PD010",
@@ -260,6 +513,9 @@ to_exclude = expand_prefixes([
     "E501",
     "W191",
     "W505",  # Except arguably this one since it's for doc lines
+    "W291",
+    "W292",
+    "W293",
     ## I'm very suspicious of these but arguably at least some of them could be
     ## in a higher category
     "S101",
@@ -421,29 +677,128 @@ to_exclude = expand_prefixes([
     "TRY003",
     # Also kind of annoying (see LOG007 above)
     "TRY400",
+    # Recategorized these from Style to Pedantic at the last minute. I don't
+    # think they even check that pytest is imported, and PT015, for example,
+    # triggers on any falsey assertion, even just a top-level `assert False`
+    "PT009",
+    "PT015",
+    "PT016",
+    "PT017",
+    "PT019",
+    "PT022",
+    "PT024",
+    "PT027",
 ])
 
-print("=== first draft ===")
+# print("=== first draft ===")
 # print(initial)
 
-print("=== current non-default ===")
+# print("=== current non-default ===")
 
 
-df = non_default.filter(
-    pl.col("_severity") < 5,
-    ~pl.col("rule").is_in(to_add),
-    ~pl.col("rule").is_in(to_exclude),
-).sort("rule")
+# df = non_default.filter(
+#     pl.col("_severity") == 2,
+#     ~pl.col("rule").is_in(to_add),
+#     ~pl.col("rule").is_in(to_exclude),
+#     # pl.col("name").str.contains(r"mutable-.*-default.*"),
+# ).sort("_severity", "rule")
 
 # check that we haven't ignored too many rules and that everything still adds
 # up to the total
-S = set(to_add) | set(to_exclude)
-non_default_rules = set(non_default.select("rule").to_series().to_list())
-missing_entirely = sorted(S - non_default_rules)
-if missing_entirely:
-    print(missing_entirely)
-assert non_default.height == len(to_add) + len(to_exclude) + df.height
+# S = set(to_add) | set(to_exclude)
+# non_default_rules = set(non_default.select("rule").to_series().to_list())
+# missing_entirely = sorted(S - non_default_rules)
+# if missing_entirely:
+#     print(missing_entirely)
+# assert non_default.height == len(to_add) + len(to_exclude) + df.height
 
-print(df)
+# print(df)
 
-df.write_csv("tmp.csv")
+# df.write_csv("tmp.csv")
+
+assert initial.height + non_default.height == len(STABLE_RULES)
+
+all_rules = pl.concat([initial, non_default], how="vertical")
+assert all_rules.height == len(STABLE_RULES)
+
+# Initial rules to keep (this is a no-op for consistency)
+to_keep = all_rules.filter(pl.col("rule").is_in(to_keep))
+# Initial rules to remove
+to_remove = all_rules.filter(pl.col("rule").is_in(to_remove))
+# Rules to add
+to_add = all_rules.filter(pl.col("rule").is_in(to_add))
+# Rules to continue excluding
+to_exclude = all_rules.filter(pl.col("rule").is_in(to_exclude))
+
+
+def to_url(rule: str) -> str:
+    return f"[{rule}](https://docs.astral.sh/ruff/rules/{rule})"
+
+
+def print_df(df):
+    with pl.Config(
+        tbl_formatting="MARKDOWN",
+        tbl_hide_column_data_types=True,
+        tbl_hide_dataframe_shape=True,
+        tbl_width_chars=-1,
+    ):
+        print(df.height)
+        print(df.drop("_severity").with_columns(pl.col("name").map_elements(to_url)))
+
+
+# print_df(to_remove)
+
+initial_minus_removed = initial.join(to_remove, on="rule", how="anti")
+# print_df(initial_minus_removed)
+
+added_correctness = to_add.filter(pl.col("category") == "correctness")
+# print_df(added_correctness)
+
+added_suspicious = to_add.filter(pl.col("category") == "suspicious")
+# print_df(added_suspicious)
+
+added_complexity = to_add.filter(pl.col("category") == "complexity")
+# print_df(added_complexity)
+
+added_perf = to_add.filter(pl.col("category") == "perf")
+# print_df(added_perf)
+
+added_style = to_add.filter(pl.col("category") == "style")
+# print_df(added_style)
+
+new_proposal = pl.concat(
+    [
+        initial_minus_removed,
+        added_correctness,
+        added_suspicious,
+        added_complexity,
+        added_perf,
+        added_style,
+    ],
+    how="vertical",
+)
+
+excluded_pedantic = to_exclude.filter(pl.col("category") == "pedantic")
+# print_df(excluded_pedantic)
+
+excluded_restriction = to_exclude.filter(pl.col("category") == "restriction")
+# print_df(excluded_restriction)
+
+all_excluded = pl.concat(
+    [
+        to_remove,
+        excluded_pedantic,
+        excluded_restriction,
+    ],
+    how="vertical",
+)
+
+print(len(RULES), "total rules")
+print(len(STABLE_RULES), "stable rules")
+print(new_proposal.height, "proposed default rules")
+print(all_excluded.height, "proposed non-default rules")
+print(new_proposal.height + all_excluded.height)
+
+print(all_rules.join(new_proposal, on="rule", how="anti").join(
+    all_excluded, on="rule", how="anti"
+))
