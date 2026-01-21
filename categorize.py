@@ -82,7 +82,7 @@ def main():
         rule, name = rows[cur]
 
         console.clear()
-        print(rule, name, f"({cur}/{len(rows)})")
+        print(rule, name, f"({cur + 1}/{len(rows)})")
 
         console.print(Markdown(explanations[rule]))
         console.print(Rule())
