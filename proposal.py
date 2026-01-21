@@ -164,23 +164,56 @@ to_exclude = expand_prefixes([
     "DJ",
     "FAST",
     "NPY",
-    "PD",
+    "PD002",
+    "PD003",
+    "PD004",
+    "PD008",
+    "PD009",
+    "PD010",
+    "PD011",
+    "PD012",
+    "PD013",
+    "PD015",
+    "PD101",
     # I kind of like these personally, but they're divisive and annoying
     "EM101",
     "EM102",
     "EM103",
     # Documentation. I marked one of these (D418) as Style instead of Pedantic,
     # but on second thought I guess it's somewhat pedantic too, so just exclude
-    # the whole set.
-    "D",
+    # the whole set. We do have to be slightly careful to avoid D419, which I
+    # proposed including in the default set
+    "D1",
+    "D2",
+    "D3",
+    "D40",
+    "D410",
+    "D411",
+    "D412",
+    "D413",
+    "D414",
+    "D415",
+    "D416",
+    "D417",
+    "D418",
     # Annotations
-    "ANN",
+    "ANN001",
+    "ANN002",
+    "ANN003",
+    "ANN201",
+    "ANN202",
+    "ANN204",
+    "ANN205",
+    "ANN206",
+    "ANN401",
     # Fixmes/todos
     "FIX",
     "TD",
     # I think ISC004 will be a better default rule, but the others felt
     # pedantic to me
-    "ISC",
+    "ISC001",
+    "ISC002",
+    "ISC003",
     # Doesn't do anything without configuring a list of imports
     "I002",
     # I think these are correctly categorized as Pedantic (or lower)
@@ -331,7 +364,10 @@ to_exclude = expand_prefixes([
     "PLC1802",
     "PLC2403",
     # too-many-* rules
-    "PLR09",
+    "PLR0911",
+    "PLR0912",
+    "PLR0913",
+    "PLR0915",
     # These all seem Pedantic
     "PLR2004",
     "PLW0603",
@@ -392,11 +428,21 @@ print("=== first draft ===")
 
 print("=== current non-default ===")
 
+
 df = non_default.filter(
-    pl.col("_severity") >= 5,
+    pl.col("_severity") < 5,
     ~pl.col("rule").is_in(to_add),
     ~pl.col("rule").is_in(to_exclude),
 ).sort("rule")
+
+# check that we haven't ignored too many rules and that everything still adds
+# up to the total
+S = set(to_add) | set(to_exclude)
+non_default_rules = set(non_default.select("rule").to_series().to_list())
+missing_entirely = sorted(S - non_default_rules)
+if missing_entirely:
+    print(missing_entirely)
+assert non_default.height == len(to_add) + len(to_exclude) + df.height
 
 print(df)
 
