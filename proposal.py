@@ -1,3 +1,5 @@
+import tomli_w
+import tomllib
 from generate_html import generate_html_table, generate_index_page
 import re
 import warnings
@@ -829,6 +831,13 @@ def generate(df, title, path):
         path,
     )
 
+
 generate(new_proposal, "Default Rules v2", "docs/on_by_default_v2.html")
 generate(all_rules, "All Rules", "docs/all_rules.html")
 generate_index_page()
+
+
+with open("proposal.toml", "wb") as f:
+    tomli_w.dump(
+        {"lint": {"select": sorted([row[0] for row in new_proposal.iter_rows()])}}, f
+    )
