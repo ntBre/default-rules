@@ -148,8 +148,10 @@
     <nav class="nav">
         <a href="index.html">Home</a>
         <a href="on_by_default.html">Default Rules</a>
+        <a href="on_by_default_v2.html">Default Rules v2</a>
         <a href="off_by_default.html">Off-by-Default Rules</a>
         <a href="high_score.html">Off-by-Default Rules (Score >11)</a>
+        <a href="all_rules.html">All Rules</a>
     </nav>
 
     <div class="table-wrapper">
@@ -186,7 +188,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR002" target="_blank" class="code rule-code">AIR002</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR002" target="_blank">airflow-dag-no-schedule-argument</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>0</td>
@@ -199,7 +201,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR301" target="_blank" class="code rule-code">AIR301</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR301" target="_blank">airflow3-removal</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
@@ -212,7 +214,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR302" target="_blank" class="code rule-code">AIR302</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/AIR302" target="_blank">airflow3-moved-to-provider</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
@@ -1668,7 +1670,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/D418" target="_blank" class="code rule-code">D418</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/D418" target="_blank">overload-with-docstring</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>0</td>
                     <td>0</td>
@@ -1941,7 +1943,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/EM102" target="_blank" class="code rule-code">EM102</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/EM102" target="_blank">f-string-in-exception</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -1954,7 +1956,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/EM103" target="_blank" class="code rule-code">EM103</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/EM103" target="_blank">dot-format-in-exception</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -2097,7 +2099,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/FAST003" target="_blank" class="code rule-code">FAST003</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/FAST003" target="_blank">fast-api-unused-path-parameter</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>0</td>
                     <td>2</td>
                     <td>2</td>
@@ -2500,7 +2502,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/G101" target="_blank" class="code rule-code">G101</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/G101" target="_blank">logging-extra-attr-clash</a></td>
-                    <td class="category-correctness">correctness</td>
+                    <td class="category-suspicious">suspicious</td>
                     <td>0</td>
                     <td>2</td>
                     <td>0</td>
@@ -2968,7 +2970,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY001" target="_blank" class="code rule-code">NPY001</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY001" target="_blank">numpy-deprecated-type-alias</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
@@ -2981,7 +2983,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY002" target="_blank" class="code rule-code">NPY002</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY002" target="_blank">numpy-legacy-random</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>0</td>
@@ -2994,7 +2996,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY003" target="_blank" class="code rule-code">NPY003</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY003" target="_blank">numpy-deprecated-function</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
@@ -3007,7 +3009,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY201" target="_blank" class="code rule-code">NPY201</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/NPY201" target="_blank">numpy2-deprecation</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>2</td>
                     <td>2</td>
@@ -3059,7 +3061,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PD007" target="_blank" class="code rule-code">PD007</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PD007" target="_blank">pandas-use-of-dot-ix</a></td>
-                    <td class="category-suspicious">suspicious</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>1</td>
                     <td>2</td>
                     <td>0</td>
@@ -3280,7 +3282,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PGH005" target="_blank" class="code rule-code">PGH005</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PGH005" target="_blank">invalid-mock-access</a></td>
-                    <td class="category-correctness">correctness</td>
+                    <td class="category-suspicious">suspicious</td>
                     <td>1</td>
                     <td>2</td>
                     <td>0</td>
@@ -3839,7 +3841,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT009" target="_blank" class="code rule-code">PT009</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT009" target="_blank">pytest-unittest-assertion</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -3917,7 +3919,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT015" target="_blank" class="code rule-code">PT015</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT015" target="_blank">pytest-assert-always-false</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -3930,7 +3932,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT016" target="_blank" class="code rule-code">PT016</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT016" target="_blank">pytest-fail-without-message</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -3943,7 +3945,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT017" target="_blank" class="code rule-code">PT017</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT017" target="_blank">pytest-assert-in-except</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -3969,7 +3971,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT019" target="_blank" class="code rule-code">PT019</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT019" target="_blank">pytest-fixture-param-without-value</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>0</td>
                     <td>1</td>
                     <td>0</td>
@@ -4008,7 +4010,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT022" target="_blank" class="code rule-code">PT022</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT022" target="_blank">pytest-useless-yield-fixture</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -4034,7 +4036,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT024" target="_blank" class="code rule-code">PT024</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT024" target="_blank">pytest-unnecessary-asyncio-mark-on-fixture</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -4073,7 +4075,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT027" target="_blank" class="code rule-code">PT027</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PT027" target="_blank">pytest-unittest-raises-assertion</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -4580,7 +4582,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI002" target="_blank" class="code rule-code">PYI002</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI002" target="_blank">complex-if-statement-in-stub</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -4632,7 +4634,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI007" target="_blank" class="code rule-code">PYI007</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI007" target="_blank">unrecognized-platform-check</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -4645,7 +4647,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI008" target="_blank" class="code rule-code">PYI008</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI008" target="_blank">unrecognized-platform-name</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>1</td>
                     <td>0</td>
@@ -4658,7 +4660,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI009" target="_blank" class="code rule-code">PYI009</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI009" target="_blank">pass-statement-stub-body</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4671,7 +4673,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI010" target="_blank" class="code rule-code">PYI010</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI010" target="_blank">non-empty-stub-body</a></td>
-                    <td class="category-correctness">correctness</td>
+                    <td class="category-suspicious">suspicious</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -4684,7 +4686,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI011" target="_blank" class="code rule-code">PYI011</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI011" target="_blank">typed-argument-default-in-stub</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4697,7 +4699,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI012" target="_blank" class="code rule-code">PYI012</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI012" target="_blank">pass-in-class-body</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4723,7 +4725,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI014" target="_blank" class="code rule-code">PYI014</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI014" target="_blank">argument-default-in-stub</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4736,7 +4738,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI015" target="_blank" class="code rule-code">PYI015</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI015" target="_blank">assignment-default-in-stub</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4827,7 +4829,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI026" target="_blank" class="code rule-code">PYI026</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI026" target="_blank">type-alias-without-annotation</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-style">style</td>
                     <td>2</td>
                     <td>0</td>
                     <td>2</td>
@@ -4905,7 +4907,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI035" target="_blank" class="code rule-code">PYI035</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/PYI035" target="_blank">unassigned-special-variable-in-stub</a></td>
-                    <td class="category-correctness">correctness</td>
+                    <td class="category-suspicious">suspicious</td>
                     <td>2</td>
                     <td>2</td>
                     <td>0</td>
@@ -5204,7 +5206,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/Q003" target="_blank" class="code rule-code">Q003</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/Q003" target="_blank">avoidable-escaped-quote</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -5217,7 +5219,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/Q004" target="_blank" class="code rule-code">Q004</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/Q004" target="_blank">unnecessary-escaped-quote</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -5594,7 +5596,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF032" target="_blank" class="code rule-code">RUF032</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/RUF032" target="_blank">decimal-from-float-literal</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-suspicious">suspicious</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -6803,7 +6805,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/SIM911" target="_blank" class="code rule-code">SIM911</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/SIM911" target="_blank">zip-dict-keys-and-values</a></td>
-                    <td class="category-pedantic">pedantic</td>
+                    <td class="category-complexity">complexity</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -7557,7 +7559,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP040" target="_blank" class="code rule-code">UP040</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/UP040" target="_blank">non-pep695-type-alias</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-complexity">complexity</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -7674,7 +7676,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/W291" target="_blank" class="code rule-code">W291</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/W291" target="_blank">trailing-whitespace</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -7687,7 +7689,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/W292" target="_blank" class="code rule-code">W292</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/W292" target="_blank">missing-newline-at-end-of-file</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>
@@ -7700,7 +7702,7 @@
                 <tr>
                     <td><a href="https://docs.astral.sh/ruff/rules/W293" target="_blank" class="code rule-code">W293</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/W293" target="_blank">blank-line-with-whitespace</a></td>
-                    <td class="category-style">style</td>
+                    <td class="category-pedantic">pedantic</td>
                     <td>2</td>
                     <td>1</td>
                     <td>2</td>

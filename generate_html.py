@@ -160,8 +160,10 @@ def generate_html_table(df, title, filename):
     <nav class="nav">
         <a href="index.html">Home</a>
         <a href="on_by_default.html">Default Rules</a>
+        <a href="on_by_default_v2.html">Default Rules v2</a>
         <a href="off_by_default.html">Off-by-Default Rules</a>
         <a href="high_score.html">Off-by-Default Rules (Score >11)</a>
+        <a href="all_rules.html">All Rules</a>
     </nav>
 
     <div class="table-wrapper">
