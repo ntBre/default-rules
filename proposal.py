@@ -743,7 +743,12 @@ def print_df(df):
         tbl_width_chars=-1,
     ):
         print(df.height)
-        print(df.drop("_severity").with_columns(pl.col("name").map_elements(to_url)))
+        print(
+            df
+            .drop("_severity")
+            .with_columns(pl.col("name").map_elements(to_url))
+            .sort("rule")
+        )
 
 
 # print_df(to_remove)
@@ -799,6 +804,6 @@ print(new_proposal.height, "proposed default rules")
 print(all_excluded.height, "proposed non-default rules")
 print(new_proposal.height + all_excluded.height)
 
-print(all_rules.join(new_proposal, on="rule", how="anti").join(
-    all_excluded, on="rule", how="anti"
-))
+df = pl.concat([new_proposal, all_excluded], how="vertical")
+
+assert df.height == len(STABLE_RULES), df.height
