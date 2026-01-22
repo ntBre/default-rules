@@ -1,3 +1,4 @@
+from generate_html import generate_html_table, generate_index_page
 import re
 import warnings
 import json
@@ -807,3 +808,27 @@ print(new_proposal.height + all_excluded.height)
 df = pl.concat([new_proposal, all_excluded], how="vertical")
 
 assert df.height == len(STABLE_RULES), df.height
+
+
+def generate(df, title, path):
+    generate_html_table(
+        df.select(
+            "rule",
+            "name",
+            "category",
+            "accuracy",
+            "severity",
+            "fixability",
+            "applicability",
+            "configuration",
+            "conflicts",
+            "total",
+            "ecosystem",
+        ).sort("rule"),
+        title,
+        path,
+    )
+
+generate(new_proposal, "Default Rules v2", "docs/on_by_default_v2.html")
+generate(all_rules, "All Rules", "docs/all_rules.html")
+generate_index_page()
