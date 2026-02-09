@@ -315,6 +315,7 @@ select = [
     "PYI047",
     "PYI048",
     "PYI049",
+    "PYI050",
     "PYI051",
     "PYI052",
     "PYI055",
