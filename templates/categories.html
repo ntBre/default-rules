@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="table-wrapper">
+        <table id="rulesTable">
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                    <th class="sortable" data-column="{{ col.key }}">{{ col.label }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule in rules %}
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/{{ rule.code }}" target="_blank" class="code rule-code">{{ rule.code }}</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/{{ rule.code }}" target="_blank">{{ rule.name or "" }}</a></td>
+                    <td{% if rule.category %} class="category-{{ rule.category }}"{% endif %}>{{ rule.category or "" }}</td>
+                    <td>{{ rule.accuracy if rule.accuracy is not none else "" }}</td>
+                    <td>{{ rule.severity if rule.severity is not none else "" }}</td>
+                    <td>{{ rule.fixability if rule.fixability is not none else "" }}</td>
+                    <td>{{ rule.applicability if rule.applicability is not none else "" }}</td>
+                    <td>{{ rule.configuration if rule.configuration is not none else "" }}</td>
+                    <td>{{ rule.conflicts if rule.conflicts is not none else "" }}</td>
+                    <td>{{ rule.total if rule.total is not none else "" }}</td>
+                    <td>{% if rule.ecosystem is not none %}<a href="ecosystem.html#{{ rule.code }}">{{ rule.ecosystem | int }}</a>{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
