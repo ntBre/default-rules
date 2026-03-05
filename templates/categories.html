@@ -13,7 +13,7 @@
             <tbody>
                 {% for rule in rules %}
                 <tr>
-                    <td><a href="https://docs.astral.sh/ruff/rules/{{ rule.code }}" target="_blank" class="code rule-code">{{ rule.code }}</a></td>
+                    <td><a href="{{ rule.pr_url }}" target="_blank" class="code rule-code">{{ rule.code }}</a></td>
                     <td><a href="https://docs.astral.sh/ruff/rules/{{ rule.code }}" target="_blank">{{ rule.name or "" }}</a></td>
                     <td{% if rule.category %} class="category-{{ rule.category }}"{% endif %}>{{ rule.category or "" }}</td>
                     <td>{{ rule.accuracy if rule.accuracy is not none else "" }}</td>
