@@ -11,3 +11,5 @@ wheels/
 
 # Notebook files
 /.ipynb_checkpoints/
+
+ecosystem.json*
