@@ -1,3 +1,5 @@
+#!/usr/bin/env -S uv run
+
 from textwrap import dedent
 from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentDefaultsHelpFormatter
 import sqlite3
