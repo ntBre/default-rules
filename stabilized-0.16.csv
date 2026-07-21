@@ -1,0 +1,14 @@
+rule,name
+AIR303,airflow3-incompatible-function-signature
+CPY001,missing-copyright-notice
+ISC004,implicit-string-concatenation-in-collection-literal
+LOG004,log-exception-outside-except-handler
+PLE0304,invalid-bool-return-type
+PLR0917,too-many-positional-arguments
+PLR1708,stop-iteration-return
+FURB164,unnecessary-from-float
+FURB192,sorted-min-max
+RUF036,none-not-at-end-of-union
+RUF045,implicit-class-var-in-dataclass
+RUF063,access-annotations-from-class-dict
+RUF068,duplicate-entry-in-dunder-all
