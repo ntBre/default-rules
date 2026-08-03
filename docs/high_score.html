@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score > 11</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #fff;
+        }
+
+        .nav {
+            padding: 10px 20px;
+            border-bottom: 1px solid #e1e4e8;
+            background-color: #f6f8fa;
+        }
+
+        .nav a {
+            color: #0366d6;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            overflow-y: auto;
+            height: calc(100vh - 41px);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f6f8fa;
+        }
+
+        th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #24292e;
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #e1e4e8;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover {
+            background-color: #e1e4e8;
+        }
+
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.3;
+        }
+
+        th.sorted-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+
+        th.sorted-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tbody tr:hover {
+            background-color: #f6f8fa;
+        }
+
+        .category-correctness {
+            background-color: #ff9aa9;
+        }
+
+        .category-suspicious {
+            background-color: #ffc66a;
+        }
+
+        .category-complexity {
+            background-color: #c7ff8a;
+        }
+
+        .category-perf {
+            background-color: #8aff8a;
+        }
+
+        .category-style {
+            background-color: #fff58a;
+        }
+
+        .category-pedantic {
+            background-color: #8ac7ff;
+        }
+
+        .category-restriction {
+            background-color: #c78aff;
+        }
+
+        td a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 12px;
+        }
+
+        .rule-code {
+            font-weight: 600;
+            color: #0366d6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="on_by_default.html">Default Rules</a>
+        <a href="on_by_default_v2.html">Default Rules v2</a>
+        <a href="on_by_default_v3.html">Default Rules v3</a>
+        <a href="off_by_default.html">Off-by-Default Rules</a>
+        <a href="high_score.html">Off-by-Default Rules (Score >11)</a>
+        <a href="all_rules.html">All Rules</a>
+        <a href="categories.html">Categories</a>
+    </nav>
+
+    <div class="table-wrapper">
+        <table id="rulesTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-column="rule">Rule</th>
+                    <th class="sortable" data-column="name">Name</th>
+                    <th class="sortable" data-column="category">Category</th>
+                    <th class="sortable" data-column="accuracy">Accuracy</th>
+                    <th class="sortable" data-column="severity">Severity</th>
+                    <th class="sortable" data-column="fixability">Fixability</th>
+                    <th class="sortable" data-column="applicability">Applicability</th>
+                    <th class="sortable" data-column="configuration">Configuration</th>
+                    <th class="sortable" data-column="conflicts">Conflicts</th>
+                    <th class="sortable" data-column="total">Total</th>
+                    <th class="sortable" data-column="ecosystem">Ecosystem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B009" target="_blank" class="code rule-code">B009</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B009" target="_blank">get-attr-with-constant</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B009">132</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B010" target="_blank" class="code rule-code">B010</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B010" target="_blank">set-attr-with-constant</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B010">128</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B011" target="_blank" class="code rule-code">B011</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B011" target="_blank">assert-false</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B011">227</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B013" target="_blank" class="code rule-code">B013</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B013" target="_blank">redundant-tuple-in-exception-handler</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B013">1</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B014" target="_blank" class="code rule-code">B014</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B014" target="_blank">duplicate-handler-exception</a></td>
+                    <td class="category-correctness">correctness</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B028" target="_blank" class="code rule-code">B028</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B028" target="_blank">no-explicit-stacklevel</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B028">668</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B033" target="_blank" class="code rule-code">B033</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/B033" target="_blank">duplicate-value</a></td>
+                    <td class="category-correctness">correctness</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#B033">9</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C400" target="_blank" class="code rule-code">C400</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C400" target="_blank">unnecessary-generator-list</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C400">21</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C401" target="_blank" class="code rule-code">C401</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C401" target="_blank">unnecessary-generator-set</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C401">104</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C402" target="_blank" class="code rule-code">C402</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C402" target="_blank">unnecessary-generator-dict</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C402">46</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C403" target="_blank" class="code rule-code">C403</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C403" target="_blank">unnecessary-list-comprehension-set</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C403">54</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C404" target="_blank" class="code rule-code">C404</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C404" target="_blank">unnecessary-list-comprehension-dict</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C404">10</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C405" target="_blank" class="code rule-code">C405</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C405" target="_blank">unnecessary-literal-set</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C405">76</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C406" target="_blank" class="code rule-code">C406</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C406" target="_blank">unnecessary-literal-dict</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C406">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C409" target="_blank" class="code rule-code">C409</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C409" target="_blank">unnecessary-literal-within-tuple-call</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C409">9</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C410" target="_blank" class="code rule-code">C410</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C410" target="_blank">unnecessary-literal-within-list-call</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C410">2</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C411" target="_blank" class="code rule-code">C411</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C411" target="_blank">unnecessary-list-call</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C411">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C413" target="_blank" class="code rule-code">C413</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C413" target="_blank">unnecessary-call-around-sorted</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C413">27</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C414" target="_blank" class="code rule-code">C414</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C414" target="_blank">unnecessary-double-cast-or-process</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C414">53</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C417" target="_blank" class="code rule-code">C417</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C417" target="_blank">unnecessary-map</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C417">50</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C418" target="_blank" class="code rule-code">C418</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C418" target="_blank">unnecessary-literal-within-dict-call</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C418">5</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C419" target="_blank" class="code rule-code">C419</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C419" target="_blank">unnecessary-comprehension-in-call</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C419">232</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C420" target="_blank" class="code rule-code">C420</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/C420" target="_blank">unnecessary-dict-comprehension-for-iterable</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#C420">52</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/EM102" target="_blank" class="code rule-code">EM102</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/EM102" target="_blank">f-string-in-exception</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#EM102">10315</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/EM103" target="_blank" class="code rule-code">EM103</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/EM103" target="_blank">dot-format-in-exception</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#EM103">228</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FLY002" target="_blank" class="code rule-code">FLY002</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FLY002" target="_blank">static-join-to-f-string</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FLY002">286</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB105" target="_blank" class="code rule-code">FURB105</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB105" target="_blank">print-empty-string</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB105">9</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB122" target="_blank" class="code rule-code">FURB122</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB122" target="_blank">for-loop-writes</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB122">40</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB129" target="_blank" class="code rule-code">FURB129</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB129" target="_blank">readlines-in-for</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB129">10</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB132" target="_blank" class="code rule-code">FURB132</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB132" target="_blank">check-and-remove-from-set</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB132">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB136" target="_blank" class="code rule-code">FURB136</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB136" target="_blank">if-expr-min-max</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB136">22</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB157" target="_blank" class="code rule-code">FURB157</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB157" target="_blank">verbose-decimal-constructor</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB157">18</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB162" target="_blank" class="code rule-code">FURB162</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB162" target="_blank">fromisoformat-replace-z</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB166" target="_blank" class="code rule-code">FURB166</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB166" target="_blank">int-on-sliced-str</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB166">1</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB167" target="_blank" class="code rule-code">FURB167</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB167" target="_blank">regex-flag-alias</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB167">74</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB168" target="_blank" class="code rule-code">FURB168</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB168" target="_blank">isinstance-type-none</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB168">1</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB169" target="_blank" class="code rule-code">FURB169</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB169" target="_blank">type-none-comparison</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB177" target="_blank" class="code rule-code">FURB177</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB177" target="_blank">implicit-cwd</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB177">15</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB181" target="_blank" class="code rule-code">FURB181</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB181" target="_blank">hashlib-digest-hex</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB187" target="_blank" class="code rule-code">FURB187</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB187" target="_blank">list-reverse-copy</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB187">12</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB188" target="_blank" class="code rule-code">FURB188</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/FURB188" target="_blank">slice-to-remove-prefix-or-suffix</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#FURB188">63</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG002" target="_blank" class="code rule-code">LOG002</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG002" target="_blank">invalid-get-logger-argument</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG009" target="_blank" class="code rule-code">LOG009</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/LOG009" target="_blank">undocumented-warn</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#LOG009">16</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF101" target="_blank" class="code rule-code">PERF101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF101" target="_blank">unnecessary-list-cast</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF102" target="_blank" class="code rule-code">PERF102</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF102" target="_blank">incorrect-dict-iterator</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PERF102">118</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF401" target="_blank" class="code rule-code">PERF401</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF401" target="_blank">manual-list-comprehension</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PERF401">648</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF403" target="_blank" class="code rule-code">PERF403</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PERF403" target="_blank">manual-dict-comprehension</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PERF403">28</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PGH004" target="_blank" class="code rule-code">PGH004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PGH004" target="_blank">blanket-noqa</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PGH004">864</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE800" target="_blank" class="code rule-code">PIE800</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE800" target="_blank">unnecessary-spread</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PIE800">39</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE804" target="_blank" class="code rule-code">PIE804</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE804" target="_blank">unnecessary-dict-kwargs</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PIE804">154</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE807" target="_blank" class="code rule-code">PIE807</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE807" target="_blank">reimplemented-container-builtin</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PIE807">88</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE808" target="_blank" class="code rule-code">PIE808</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE808" target="_blank">unnecessary-range-start</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PIE808">97</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE810" target="_blank" class="code rule-code">PIE810</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PIE810" target="_blank">multiple-starts-ends-with</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PIE810">73</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0208" target="_blank" class="code rule-code">PLC0208</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC0208" target="_blank">iteration-over-set</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLC0208">18</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC1802" target="_blank" class="code rule-code">PLC1802</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLC1802" target="_blank">len-test</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLC1802">21</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1520" target="_blank" class="code rule-code">PLE1520</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLE1520" target="_blank">singledispatchmethod-function</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1711" target="_blank" class="code rule-code">PLR1711</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1711" target="_blank">useless-return</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1711">95</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1714" target="_blank" class="code rule-code">PLR1714</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1714" target="_blank">repeated-equality-comparison</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1714">214</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1716" target="_blank" class="code rule-code">PLR1716</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1716" target="_blank">boolean-chained-comparison</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1716">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1730" target="_blank" class="code rule-code">PLR1730</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1730" target="_blank">if-stmt-min-max</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1730">33</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1733" target="_blank" class="code rule-code">PLR1733</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1733" target="_blank">unnecessary-dict-index-lookup</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1733">21</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1736" target="_blank" class="code rule-code">PLR1736</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR1736" target="_blank">unnecessary-list-index-lookup</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR1736">17</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR2044" target="_blank" class="code rule-code">PLR2044</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR2044" target="_blank">empty-comment</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR2044">65</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR5501" target="_blank" class="code rule-code">PLR5501</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLR5501" target="_blank">collapsible-else-if</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLR5501">478</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW3301" target="_blank" class="code rule-code">PLW3301</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PLW3301" target="_blank">nested-min-max</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PLW3301">4</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PT009" target="_blank" class="code rule-code">PT009</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PT009" target="_blank">pytest-unittest-assertion</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PT009">20795</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PT027" target="_blank" class="code rule-code">PT027</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PT027" target="_blank">pytest-unittest-raises-assertion</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PT027">1280</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH100" target="_blank" class="code rule-code">PTH100</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH100" target="_blank">os-path-abspath</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH100">707</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH101" target="_blank" class="code rule-code">PTH101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH101" target="_blank">os-chmod</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH101">93</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH102" target="_blank" class="code rule-code">PTH102</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH102" target="_blank">os-mkdir</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH102">143</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH103" target="_blank" class="code rule-code">PTH103</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH103" target="_blank">os-makedirs</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH103">440</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH104" target="_blank" class="code rule-code">PTH104</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH104" target="_blank">os-rename</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH104">48</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH105" target="_blank" class="code rule-code">PTH105</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH105" target="_blank">os-replace</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH105">8</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH106" target="_blank" class="code rule-code">PTH106</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH106" target="_blank">os-rmdir</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH106">23</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH107" target="_blank" class="code rule-code">PTH107</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH107" target="_blank">os-remove</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH107">312</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH108" target="_blank" class="code rule-code">PTH108</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH108" target="_blank">os-unlink</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH108">115</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH109" target="_blank" class="code rule-code">PTH109</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH109" target="_blank">os-getcwd</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH109">400</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH110" target="_blank" class="code rule-code">PTH110</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH110" target="_blank">os-path-exists</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH110">1397</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH111" target="_blank" class="code rule-code">PTH111</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH111" target="_blank">os-path-expanduser</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH111">160</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH112" target="_blank" class="code rule-code">PTH112</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH112" target="_blank">os-path-isdir</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH112">358</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH113" target="_blank" class="code rule-code">PTH113</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH113" target="_blank">os-path-isfile</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH113">420</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH114" target="_blank" class="code rule-code">PTH114</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH114" target="_blank">os-path-islink</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH114">56</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH115" target="_blank" class="code rule-code">PTH115</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH115" target="_blank">os-readlink</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH115">11</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH117" target="_blank" class="code rule-code">PTH117</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH117" target="_blank">os-path-isabs</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH117">72</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH119" target="_blank" class="code rule-code">PTH119</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH119" target="_blank">os-path-basename</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH119">522</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH120" target="_blank" class="code rule-code">PTH120</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH120" target="_blank">os-path-dirname</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH120">910</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH121" target="_blank" class="code rule-code">PTH121</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH121" target="_blank">os-path-samefile</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH121">16</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH123" target="_blank" class="code rule-code">PTH123</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH123" target="_blank">builtin-open</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH123">3878</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH201" target="_blank" class="code rule-code">PTH201</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH201" target="_blank">path-constructor-current-directory</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH201">59</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH202" target="_blank" class="code rule-code">PTH202</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH202" target="_blank">os-path-getsize</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH202">62</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH203" target="_blank" class="code rule-code">PTH203</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH203" target="_blank">os-path-getatime</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH204" target="_blank" class="code rule-code">PTH204</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH204" target="_blank">os-path-getmtime</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH204">30</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH205" target="_blank" class="code rule-code">PTH205</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH205" target="_blank">os-path-getctime</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH205">2</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH211" target="_blank" class="code rule-code">PTH211</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PTH211" target="_blank">os-symlink</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PTH211">77</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI030" target="_blank" class="code rule-code">PYI030</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI030" target="_blank">unnecessary-literal-union</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PYI030">16</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI032" target="_blank" class="code rule-code">PYI032</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI032" target="_blank">any-eq-ne-annotation</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PYI032">93</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI041" target="_blank" class="code rule-code">PYI041</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI041" target="_blank">redundant-numeric-union</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PYI041">107</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI058" target="_blank" class="code rule-code">PYI058</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI058" target="_blank">generator-return-from-iter-method</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI061" target="_blank" class="code rule-code">PYI061</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI061" target="_blank">redundant-none-literal</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PYI061">9</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI064" target="_blank" class="code rule-code">PYI064</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/PYI064" target="_blank">redundant-final-literal</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#PYI064">24</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF005" target="_blank" class="code rule-code">RUF005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF005" target="_blank">collection-literal-concatenation</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF005">1471</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF007" target="_blank" class="code rule-code">RUF007</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF007" target="_blank">zip-instead-of-pairwise</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF007">19</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF010" target="_blank" class="code rule-code">RUF010</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF010" target="_blank">explicit-f-string-type-conversion</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF010">539</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF015" target="_blank" class="code rule-code">RUF015</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF015" target="_blank">unnecessary-iterable-allocation-for-first-element</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF015">237</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF017" target="_blank" class="code rule-code">RUF017</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF017" target="_blank">quadratic-list-summation</a></td>
+                    <td class="category-perf">perf</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF017">88</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF019" target="_blank" class="code rule-code">RUF019</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF019" target="_blank">unnecessary-key-check</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF019">21</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF020" target="_blank" class="code rule-code">RUF020</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF020" target="_blank">never-union</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF020">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF021" target="_blank" class="code rule-code">RUF021</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF021" target="_blank">parenthesize-chained-operators</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF021">195</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF032" target="_blank" class="code rule-code">RUF032</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF032" target="_blank">decimal-from-float-literal</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF032">19</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF041" target="_blank" class="code rule-code">RUF041</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF041" target="_blank">unnecessary-nested-literal</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF046" target="_blank" class="code rule-code">RUF046</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF046" target="_blank">unnecessary-cast-to-int</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF046">34</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF051" target="_blank" class="code rule-code">RUF051</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF051" target="_blank">if-key-in-dict-del</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF051">14</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF057" target="_blank" class="code rule-code">RUF057</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF057" target="_blank">unnecessary-round</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#RUF057">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF058" target="_blank" class="code rule-code">RUF058</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/RUF058" target="_blank">starmap-zip</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM101" target="_blank" class="code rule-code">SIM101</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM101" target="_blank">duplicate-isinstance-call</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM101">21</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM103" target="_blank" class="code rule-code">SIM103</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM103" target="_blank">needless-bool</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM103">301</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM114" target="_blank" class="code rule-code">SIM114</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM114" target="_blank">if-with-same-arms</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM114">319</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM201" target="_blank" class="code rule-code">SIM201</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM201" target="_blank">negate-equal-op</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM201">165</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM202" target="_blank" class="code rule-code">SIM202</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM202" target="_blank">negate-not-equal-op</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM202">20</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM208" target="_blank" class="code rule-code">SIM208</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM208" target="_blank">double-negation</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM210" target="_blank" class="code rule-code">SIM210</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM210" target="_blank">if-expr-with-true-false</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM210">43</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM211" target="_blank" class="code rule-code">SIM211</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM211" target="_blank">if-expr-with-false-true</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM211">24</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM212" target="_blank" class="code rule-code">SIM212</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM212" target="_blank">if-expr-with-twisted-arms</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM212">17</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM220" target="_blank" class="code rule-code">SIM220</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM220" target="_blank">expr-and-not-expr</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM221" target="_blank" class="code rule-code">SIM221</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM221" target="_blank">expr-or-not-expr</a></td>
+                    <td class="category-suspicious">suspicious</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM222" target="_blank" class="code rule-code">SIM222</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM222" target="_blank">expr-or-true</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM222">3</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM223" target="_blank" class="code rule-code">SIM223</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM223" target="_blank">expr-and-false</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM223">5</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM905" target="_blank" class="code rule-code">SIM905</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM905" target="_blank">split-static-string</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM905">134</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM910" target="_blank" class="code rule-code">SIM910</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM910" target="_blank">dict-get-with-none-default</a></td>
+                    <td class="category-pedantic">pedantic</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#SIM910">135</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM911" target="_blank" class="code rule-code">SIM911</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/SIM911" target="_blank">zip-dict-keys-and-values</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC005" target="_blank" class="code rule-code">TC005</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TC005" target="_blank">empty-type-checking-block</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#TC005">9</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TRY201" target="_blank" class="code rule-code">TRY201</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/TRY201" target="_blank">verbose-raise</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#TRY201">421</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP001" target="_blank" class="code rule-code">UP001</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP001" target="_blank">useless-metaclass-type</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP003" target="_blank" class="code rule-code">UP003</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP003" target="_blank">type-of-primitive</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP004" target="_blank" class="code rule-code">UP004</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP004" target="_blank">useless-object-inheritance</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP004">129</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP008" target="_blank" class="code rule-code">UP008</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP008" target="_blank">super-call-with-parameters</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP008">98</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP009" target="_blank" class="code rule-code">UP009</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP009" target="_blank">utf8-encoding-declaration</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP009">44</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP011" target="_blank" class="code rule-code">UP011</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP011" target="_blank">lru-cache-without-parameters</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP011">6</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP012" target="_blank" class="code rule-code">UP012</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP012" target="_blank">unnecessary-encode-utf8</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP012">124</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP013" target="_blank" class="code rule-code">UP013</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP013" target="_blank">convert-typed-dict-functional-to-class</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP013">6</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP014" target="_blank" class="code rule-code">UP014</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP014" target="_blank">convert-named-tuple-functional-to-class</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP014">2</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP015" target="_blank" class="code rule-code">UP015</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP015" target="_blank">redundant-open-modes</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP015">303</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP018" target="_blank" class="code rule-code">UP018</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP018" target="_blank">native-literals</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP018">26</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP020" target="_blank" class="code rule-code">UP020</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP020" target="_blank">open-alias</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP020">2</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP022" target="_blank" class="code rule-code">UP022</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP022" target="_blank">replace-stdout-stderr</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP022">6</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP025" target="_blank" class="code rule-code">UP025</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP025" target="_blank">unicode-kind-prefix</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP025">31</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP028" target="_blank" class="code rule-code">UP028</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP028" target="_blank">yield-in-for-loop</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP028">24</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP030" target="_blank" class="code rule-code">UP030</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP030" target="_blank">format-literals</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP030">84</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP031" target="_blank" class="code rule-code">UP031</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP031" target="_blank">printf-string-formatting</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP031">1060</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP032" target="_blank" class="code rule-code">UP032</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP032" target="_blank">f-string</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP032">1053</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP033" target="_blank" class="code rule-code">UP033</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP033" target="_blank">lru-cache-with-maxsize-none</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP033">20</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP034" target="_blank" class="code rule-code">UP034</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP034" target="_blank">extraneous-parentheses</a></td>
+                    <td class="category-complexity">complexity</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP034">68</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP039" target="_blank" class="code rule-code">UP039</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP039" target="_blank">unnecessary-class-parentheses</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td><a href="ecosystem.html#UP039">38</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP050" target="_blank" class="code rule-code">UP050</a></td>
+                    <td><a href="https://docs.astral.sh/ruff/rules/UP050" target="_blank">useless-class-metaclass-type</a></td>
+                    <td class="category-style">style</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>11.0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Sorting functionality
+        const table = document.getElementById('rulesTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const headers = table.querySelectorAll('th.sortable');
+        let sortState = {};
+
+        // Custom category order
+        const categoryOrder = {
+            'correctness': 0,
+            'suspicious': 1,
+            'style': 2,
+            'complexity': 3,
+            'perf': 4,
+            'pedantic': 5,
+            'restriction': 6
+        };
+
+        headers.forEach((header, index) => {
+            header.addEventListener('click', function() {
+                const column = this.getAttribute('data-column');
+                const columnIndex = index;
+
+                // Toggle sort direction
+                if (sortState.column === column) {
+                    sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortState.column = column;
+                    sortState.direction = 'asc';
+                }
+
+                // Update header classes
+                headers.forEach(h => {
+                    h.classList.remove('sorted-asc', 'sorted-desc');
+                });
+                this.classList.add(sortState.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+                // Sort rows
+                const sortedRows = rows.sort((a, b) => {
+                    const aCell = a.cells[columnIndex].textContent.trim();
+                    const bCell = b.cells[columnIndex].textContent.trim();
+
+                    // Special handling for category column
+                    if (column === 'category') {
+                        const aOrder = categoryOrder[aCell.toLowerCase()] ?? 999;
+                        const bOrder = categoryOrder[bCell.toLowerCase()] ?? 999;
+                        return sortState.direction === 'asc' ? aOrder - bOrder : bOrder - aOrder;
+                    }
+
+                    // Try to parse as number
+                    const aNum = parseFloat(aCell);
+                    const bNum = parseFloat(bCell);
+
+                    if (!isNaN(aNum) && !isNaN(bNum)) {
+                        return sortState.direction === 'asc' ? aNum - bNum : bNum - aNum;
+                    }
+
+                    // String comparison
+                    if (sortState.direction === 'asc') {
+                        return aCell.localeCompare(bCell);
+                    } else {
+                        return bCell.localeCompare(aCell);
+                    }
+                });
+
+                // Re-append rows
+                sortedRows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+</body>
+</html>
